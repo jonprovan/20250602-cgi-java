@@ -30,6 +30,10 @@ public class JavaBasics {
 	 * - the class can be called whatever we want, but the method has a specific signature
 	 * - the main method then runs top-to-bottom
 	 * - when the main method is complete, the program ends
+	 * 
+	 * Class names are Pascal Case -- MyClass, LinkedList, HashMap, etc. (no spaces, dashes, etc.)
+	 * Method names are camel Case -- myMethod, offerFirst, getAll, etc. (also no spaces, dashes, etc.)
+	 * Property names == same as methods (numberOfLegs, interiorColor, etc.)
 	 */
 
 	// a main method
