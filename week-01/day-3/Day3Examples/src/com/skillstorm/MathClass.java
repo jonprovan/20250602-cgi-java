@@ -93,9 +93,6 @@ public class MathClass {
 		// note that this involves instantiating a new Object from the Random class, then calling one of its methods
 		int randomInt = new Random().nextInt(10) + 1;
 		System.out.println(randomInt);
-		
-		
-
 	}
 
 }
