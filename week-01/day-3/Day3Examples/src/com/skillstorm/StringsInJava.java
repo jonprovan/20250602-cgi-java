@@ -123,7 +123,33 @@ public class StringsInJava {
 		// .isEmpty()
 		boolean isMyStringEmpty = "".isEmpty();
 		System.out.println(isMyStringEmpty);
-
+		
+		// chaining operations
+		// this will become especially useful later when we get into Streams and the Builder Pattern
+		// most of the above operations return the altered value, so we can link them together
+		String starting = "    My-Name-Is      Something-Or-Other    ";
+		String ending = starting.trim()
+								.toLowerCase()
+								.replaceFirst("m", "M")
+								.replace('-', ' ')
+								.replaceFirst("      ", " ")
+								.concat(".");
+		
+		System.out.println(ending);
+		
+		// equality for Strings can be weird
+		// because they're Objects
+		System.out.println("abc" == "abc");
+		
+		String a = new String("abc");
+		String b = new String("abc");
+		
+		System.out.println(a == b);
+		
+		// the .equals() method is the best practices choice that will work with ALL Strings, however they're declared
+		// literals and Objects can be compared to either literals or Objects
+		// the String class has an OVERRIDE for the .equals() method that makes it work
+		System.out.println(a.equals(b));
 	}
 
 }
