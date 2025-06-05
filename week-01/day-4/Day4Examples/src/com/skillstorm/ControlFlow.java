@@ -263,7 +263,7 @@ public class ControlFlow {
 				daHouse(name2); break;
 			default:
 				System.out.println("It was some other random person.");
-		}
+		} 
 		
 	}
 	
