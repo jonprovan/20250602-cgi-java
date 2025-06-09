@@ -1,3 +1,4 @@
+package com.skillstorm;
 
 public class VariableScope {
 

@@ -107,7 +107,37 @@ public class BooleanOperations {
 		}
 		
 		
+		// logical operator shorthand
+		// if you use bitwise & or bitwise |, BOTH sides of the question ALWAYS get evaluated
+		int g = 3;
+		int h = 4;
+		if (g == 2 & h == 4)
+			System.out.println("Both were true.");
+		
+		if (g == 2 && h == 1/0)
+			System.out.println("Both were true again.");
+		
+		Book myBook = new Book("The Stars My Destination");
+		myBook = null;
+		
+		// safeguarding against Exceptions using && or ||
+		// for &&, if the left side returns false, the right side doesn't get processed -- we already know the && is false
+		// for ||, if the left side returns true, the right side doesn't get processed -- we already know the || is false 
+		if (myBook != null && myBook.title == "The Stars My Destination")
+			System.out.println("Such a good book...");
+		
 
 	}
 
+}
+
+class Book {
+	
+	// instance property or instance variable
+	// it has a distinct value for each instance of the class (each object made from this class)
+	public String title;
+	
+	public Book(String title) {
+		this.title = title;
+	}
 }
