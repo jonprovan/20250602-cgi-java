@@ -55,6 +55,8 @@ public class MethodBasics {
 		System.out.println(randomCutoff());
 		
 		// note that we're not calling squareIt() here, just stageOne, and stageOne calls squareIt
+		// each method called by this method must resolve before this method can complete
+		// each method gets added to the top of the stack until it returns and resolves
 		stageOne(5, "     Pearl Jam     ", true);
 
 	}
@@ -102,12 +104,16 @@ public class MethodBasics {
 		return "Less than one-third";
 	}
 	
+	// this method calls three other methods
 	public static void stageOne(int a, String b, boolean c) {
 		
+		// in order to print, we need to run squareIt() first
 		System.out.println("My int squared is: " + squareIt(a));
 		
+		// same with validateString()
 		System.out.println("My favorite band is: " + validateString(b));
 		
+		// here, stageTwo() has to call another method as well
 		System.out.println("My double is: " + stageTwo(c));
 		
 	}
@@ -124,6 +130,7 @@ public class MethodBasics {
 			return "WRONG ANSWER";
 	}
 	
+	// this needs to call returnChar() in order to complete
 	public static double stageTwo(boolean c) {
 		if (returnChar(c) == 'X')
 			return 1.0;
