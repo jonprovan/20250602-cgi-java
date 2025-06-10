@@ -49,6 +49,13 @@ public class MethodBasics {
 		
 		// here, we're sending it directly into another method as a parameter
 		System.out.println(add(11, 22));
+		
+		checkTopping("Anchovies");
+		
+		System.out.println(randomCutoff());
+		
+		// note that we're not calling squareIt() here, just stageOne, and stageOne calls squareIt
+		stageOne(5, "     Pearl Jam     ", true);
 
 	}
 	
@@ -66,6 +73,70 @@ public class MethodBasics {
 		return sum;
 	}
 	
+	// wherever you see the return keyword, method processing will end there
+	// we may want to "get out" of a method at various points and/or before later steps, etc.
+	// Java will tell you if you have a branch from which you're not returning if required
+	public static void checkTopping(String topping) {
+		if (topping.equals("Pineapple")) {
+			System.out.println("Yuck!");
+			return;
+		} else if (topping.equals("Anchovies")) {
+			System.out.println("Maybe if I'm ravenous...");
+			return;
+		}
+			
+		System.out.println("DELISH!!");
+	}
+	
+	// these ifs are called guard clauses
+	// they allow us to rule out certain brackets of possibility
+	public static String randomCutoff() {
+		double random = Math.random();
+		
+		if (random > 0.666)
+			return "Greater than two-thirds";
+		
+		if (random > 0.333)
+			return "Between one- and two-thirds";
+		
+		return "Less than one-third";
+	}
+	
+	public static void stageOne(int a, String b, boolean c) {
+		
+		System.out.println("My int squared is: " + squareIt(a));
+		
+		System.out.println("My favorite band is: " + validateString(b));
+		
+		System.out.println("My double is: " + stageTwo(c));
+		
+	}
+	
+	public static int squareIt(int a) {
+		return (int)Math.pow(a, 2);
+	}
+	
+	public static String validateString(String b) {
+		b = b.trim();
+		if (b.equals("Pearl Jam"))
+			return b;
+		else
+			return "WRONG ANSWER";
+	}
+	
+	public static double stageTwo(boolean c) {
+		if (returnChar(c) == 'X')
+			return 1.0;
+		else
+			return 0.0;
+	}
+	
+	public static char returnChar(boolean c) {
+		if (c)
+			return 'X';
+		else
+			return 'Y';
+	}
 	
 	
 
