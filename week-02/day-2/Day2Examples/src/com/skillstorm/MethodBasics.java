@@ -58,6 +58,25 @@ public class MethodBasics {
 		// each method called by this method must resolve before this method can complete
 		// each method gets added to the top of the stack until it returns and resolves
 		stageOne(5, "     Pearl Jam     ", true);
+		
+		
+		// instance methods
+		
+		// can't do this
+//		raiseHand();
+		
+		// can't do this, either
+//		Student.raiseHand();
+		
+		// CAN do this, because this method is static, belongs to the class, and exists before an object is instantiated
+		Student.joinClass();
+		
+		// we need to create an object from the Student class first, then call the method on the object
+		Student s = new Student();
+		
+		// calling the method on the object
+		s.raiseHand();
+		
 
 	}
 	
@@ -147,6 +166,20 @@ public class MethodBasics {
 	
 	
 
+}
+
+class Student {
+	
+	// an instance method
+	public void raiseHand() {
+		System.out.println("Hey, um...I have a question.");
+	}
+	
+	// a static or class method
+	public static void joinClass( ) {
+		System.out.println("Joined!");
+	}
+	
 }
 
 
