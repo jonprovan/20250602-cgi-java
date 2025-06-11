@@ -9,9 +9,9 @@ public class MethodOverloading {
 		 * 
 		 * in general, overloading is when we have two methods within the same scope
 		 * with the same exact name but different parameters
-		 * - different number of parameters
-		 * - same number of parameters but different types
-		 * - same number AND types but a different order
+		 * - different NUMBER of parameters
+		 * - same number of parameters but different TYPES
+		 * - same number AND types but a different ORDER
 		 * 
 		 * this is called compile-time polymorphism
 		 * - as opposed to runtime polymorphism, which is method overriding (content coming in Week 3)
@@ -44,6 +44,17 @@ public class MethodOverloading {
 		
 		System.out.println(add(789, "012"));
 		
+		// whether or not we have an instance of this class, we can still run static methods
+		MethodOverloading mo = new MethodOverloading();
+		
+		// this is the proper way
+		MethodOverloading.add(3, 4);
+		
+		// but, we can still do it like this
+		// which is why we need to have unique signatures even between static and non-static methods
+		// since they use the same syntax, like this, Java doesn't know which one to select!
+		// uncomment lines 93-95 to see what I mean!
+		mo.add(3, 4);
 		
 
 	}
