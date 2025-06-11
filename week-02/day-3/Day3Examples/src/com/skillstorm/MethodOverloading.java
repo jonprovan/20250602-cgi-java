@@ -20,6 +20,7 @@ public class MethodOverloading {
 		 * (i.e., things that don't distinguish one method from another
 		 * - the access modifier
 		 * - the return type
+		 * - whether or not it's static, final, default, etc.
 		 * 
 		 * WHY IS THIS USEFUL?
 		 * Ease of understanding the interface/functionality with an object/class
@@ -77,10 +78,10 @@ public class MethodOverloading {
 	}
 	
 	// can't do this, either, even though the previous one is static and this one is not
-	// this is because of the quirk that you can all a static method on an instance (even though you shouldn't)
-	public int add(int a, int b) {
-		return a + b;
-	}
+	// this is because of the quirk that you can call a static method on an instance (even though you shouldn't)
+//	public int add(int a, int b) {
+//		return a + b;
+//	}
 	
 	
 	
