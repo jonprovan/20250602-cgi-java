@@ -41,8 +41,13 @@ git checkout <name> -- switches to whichever branch you name
 
 git push origin <branch name> -- pushes to GitHub in a new branch
 
+- after pushing to the remote, initiate a pull request in GitHub to start the process of merging your new branch with the main branch
 
+- then, once the pull request is approved and complete, you're free to delete your branch on GitHub if you don't need it
 
+- then, locally, checkout the main branch and pull it to get the updates
+
+git branch -d <branch name> -- deletes the local branch
 
 
 
