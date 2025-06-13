@@ -1,0 +1,24 @@
+GIT AND GITHUB
+
+- git is a version-control piece of software
+- it runs locally on your machine
+- you can save out multiple versions of a project
+- you can checkout different versions and work on them separately
+- you have the ability to roll back to earlier versions, merge versions, selectively add things to other versions, branch off, etc.
+
+- GitHub is an online code repository
+- it can back up your local software
+- it also easily enables multiple developers to work on the same codebase
+
+COMMANDS
+git clone -- clone a remote repo from GitHub to your machine
+
+// the following commands require that you've navigated to inside the repo folder
+
+git pull -- pulls all remote changes to your local machine
+
+(root folder) git add . -- adds all files/folders to a new commit
+
+(root folder) git commit -m "<message text>" -- creates a new local version and gives it the name you put in the message text
+
+(root folder) git push origin main -- pushes all the files to your GitHub repo, in the main branch
