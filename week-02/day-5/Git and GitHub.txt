@@ -37,6 +37,10 @@ git branch <name> -- creates a new branch with the given name, copied from whate
 
 git checkout <name> -- switches to whichever branch you name
 
+(git add . and git commit -m <text> still apply within whatever branch)
+
+git push origin <branch name> -- pushes to GitHub in a new branch
+
 
 
 
