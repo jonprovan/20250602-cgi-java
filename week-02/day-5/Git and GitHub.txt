@@ -22,3 +22,30 @@ git pull -- pulls all remote changes to your local machine
 (root folder) git commit -m "<message text>" -- creates a new local version and gives it the name you put in the message text
 
 (root folder) git push origin main -- pushes all the files to your GitHub repo, in the main branch
+
+
+BEST PRACTICES FOR BRANCHING
+- when working with a team, you won't push to the main branch
+- you'll create your own branch from wherever the main branch is at that time
+- then work in your own branch, push that to GitHub
+- then, when code is reviewed, you'll merge it into the main branch
+- these side branches are often called "feature branches"
+
+git branch -- lists all the branches available locally (the one you're currently on will have an asterisk
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
