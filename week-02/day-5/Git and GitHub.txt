@@ -33,8 +33,9 @@ BEST PRACTICES FOR BRANCHING
 
 git branch -- lists all the branches available locally (the one you're currently on will have an asterisk
 
+git branch <name> -- creates a new branch with the given name, copied from whatever branch you're on at the time
 
-
+git checkout <name> -- switches to whichever branch you name
 
 
 
