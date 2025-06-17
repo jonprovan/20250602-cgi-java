@@ -16,6 +16,7 @@ public class OOPConcepts {
 		 * OOP aims to represent real-world "things" as programming objects
 		 * 
 		 * A class is a template or blueprint that describes common state and behavior for any number of objects
+		 * 
 		 * -- Player class -> Jimmy, age 14, number 12, on the Devils
 		 * 				   -> Marie, age 13, number 6, on the Saints
 		 * 
@@ -23,6 +24,7 @@ public class OOPConcepts {
 		 * 				 -> Saints, 16 members, Coach Sue, red/green
 		 * 
 		 * An object is an "instance" created from a class
+		 * 
 		 * -- e.g. one actual Player object from our Player class, etc.
 		 * -- objects, once instantiated, live on the heap
 		 * 
