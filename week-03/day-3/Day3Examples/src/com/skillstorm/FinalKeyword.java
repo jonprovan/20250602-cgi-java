@@ -41,6 +41,10 @@ public class FinalKeyword {
 		// an example of an existing final property
 		double x = Math.PI;
 		
+		// can use this in methods as well
+		final int finalInt = 3;
+//		finalInt = 5;
+		
 	}
 
 }
