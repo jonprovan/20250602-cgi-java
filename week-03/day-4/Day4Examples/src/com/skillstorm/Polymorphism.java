@@ -32,7 +32,7 @@ public class Polymorphism {
 		
 		// the reference type DOES NOT dictate which version of the overridden method gets run
 		// it is ALWAYS dictated by the actual instantiated object
-		// the overridden method will be the one farthest down in the chain
+		// the overridden method version that gets run will be the one farthest down in the chain
 		Parent child2 = new Child();
 		
 		child2.shout();
