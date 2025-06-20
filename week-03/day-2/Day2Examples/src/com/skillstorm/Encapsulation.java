@@ -16,7 +16,7 @@ public class Encapsulation {
 		 * To hide data from other parts of the program, we use access modifiers
 		 * public -- ANY part of the program can access it
 		 * protected -- ONLY the class AND any class in the SAME PACKAGE...PLUS child classes in OTHER PACKAGES
-		 * default -- ONLY the class itself AND any class in the SAME PACKAGE can access it
+		 * default (no modifier) -- ONLY the class itself AND any class in the SAME PACKAGE can access it
 		 * private -- ONLY the class itself (or any methods within it) can access it
 		 * 
 		 * FULL ENCAPSULATION
