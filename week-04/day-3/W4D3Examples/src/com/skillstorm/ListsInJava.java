@@ -73,7 +73,10 @@ public class ListsInJava {
 		// removing a value
 		// this can be done via index, like this
 		// it completely removes the element and shifts all the other elements over to fill the gap
-		al.remove(1);
+		Integer removed = al.remove(1);
+		
+		// the remove method returns the value at that index
+		System.out.println(removed);
 		
 		System.out.println(al);
 		
