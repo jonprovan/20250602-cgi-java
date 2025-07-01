@@ -30,10 +30,10 @@ public class TheComparableInterface {
 		Person a = new Person("Robert", 88, aKids);
 		
 		String[] bKids = { "Louis" };
-		Person b = new Person("Marla", 36, bKids);
+		Person b = new Person("Marla", 75, bKids);
 		
 		String[] cKids = { "Gina", "Al", "Zola", "Doug" };
-		Person c = new Person("Louise", 75, cKids);
+		Person c = new Person("Marla", 36, cKids);
 		
 		
 		Person[] peopleArray = { a, b, c };
@@ -45,7 +45,22 @@ public class TheComparableInterface {
 		Arrays.sort(peopleArray);
 		Collections.sort(people);
 		
+		// now that our Person class implements Comparable, the collection gets sorted properly
+		// comment/uncomment the different logic in the compareTo method to see the different sort orders
+		// currently, it sorts by name, and if the names match, it sorts those by age
+		
 		System.out.println(people);
+		
+		// why do we need to return an int from compareTo, and what does it mean?
+		Integer i = 45;
+		Integer j = 0;
+		
+		// if an object is "more" than another object, compareTo should return a positive integer
+		// if it's "less," it should return a negative integer
+		// if it's "the same," it should return 0
+		System.out.println(i.compareTo(j));
+		System.out.println(j.compareTo(i));
+		System.out.println(i.compareTo(i));
 		
 	}
 
@@ -67,8 +82,43 @@ class Person implements Comparable<Person> {
 	}
 
 	@Override
-	public int compareTo(Person p) {
-		return 0;
+	public String toString() {
+		return "Person [name=" + name + ", age=" + age + ", children=" + Arrays.toString(children) + "]";
+	}
+
+	@Override
+	public int compareTo(Person other) {
+		// comparing by age
+//		if (this.age > other.age)
+//			return 1;
+//		else if (this.age < other.age)
+//			return -1;
+//		else
+//			return 0;
+		
+		// we can shorthand this substantially
+//		return this.age - other.age;
+		
+		// comparing by name
+		// for Strings, we can use the String class's compareTo method
+		// String ALSO implements Comparable (it has a natural sort order), so we can lean on that
+		// its compareTo method returns an int, so we can use the natural sort order or flip it if we want
+//		return this.name.compareTo(other.name);
+		
+		// comparing number of children
+		// you'd need some logic in here to protect against a null children array
+//		return this.children.length - other.children.length;
+		
+		// combining different sort criteria
+		if (this.name.compareTo(other.name) == 0)
+			return this.age - other.age;
+		else
+			return this.name.compareTo(other.name);
+		
+		// each of these natural sort orders is kinda on its own
+		// we can't choose to sort by name sometimes (in a given class) and by age other times
+		// in order to get around this, we need to work with the Comparator interface
+		
 	}
 	
 }
