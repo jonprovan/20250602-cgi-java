@@ -62,6 +62,22 @@ public class TheComparableInterface {
 		System.out.println(j.compareTo(i));
 		System.out.println(i.compareTo(i));
 		
+		// sorting speed test
+		List<Double> doubles = new LinkedList<>();
+		
+		for (long l = 0; l < 1000000; l++) {
+			doubles.add(Math.random());
+		}
+		
+		long startTime = System.nanoTime();
+		
+		Collections.sort(doubles);
+		
+		long endTime = System.nanoTime();
+		
+		System.out.println("Time it takes to sort a million random doubles:");
+		System.out.println((double)(endTime - startTime) / 1000000000);
+		
 	}
 
 }
