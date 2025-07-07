@@ -39,6 +39,8 @@ public class LambdaFunctions {
 		 * () -> a + b; -- assuming a and b are ints here, this is a method that returns an int
 		 * 
 		 * if you DO use braces, you MUST use the return keyword like you normally would, unless you don't need it, like the third one below
+		 * also, when inside the braces, you must treat each line as a full line of regular code
+		 * you NEED to have semicolons -- these blocks are like any other code block (if/else, try/catch, loops, etc.)
 		 * () -> { return a + b; }
 		 * () -> { if (a == b) return; }
 		 * () -> { System.out.printline("Hi"); }
