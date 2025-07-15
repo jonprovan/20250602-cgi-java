@@ -1,0 +1,41 @@
+<!-- this is a comment in an XML file -->
+<!-- 
+	XML = eXtensible Markup Language
+	you'll often see these used for configuration files
+	this one is called pom.xml - Project Object Model
+	
+	it will contain version information, naming, and most importantly, our dependencies!
+	any software on which our project depends will be included here
+	it can then be used directly in the source files
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.skillstorm</groupId>
+  <artifactId>maven-project</artifactId>
+  <version>0.0.1</version>
+  <name>maven-project</name>
+  <description>A sample Maven project for in-class examples</description>
+  
+  <!-- you need a dependencies tag around ALL of your dependencies -->
+  <dependencies>
+  		
+  		<!-- then, each individual dependency will be inside its own dependency tag 
+  				go to the link in the comment below to see this dependency or browse for others - mvnrepository.org -->
+  		
+  		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web -->
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-web</artifactId>
+		    <version>3.5.3</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
+		<dependency>
+		    <groupId>org.junit.jupiter</groupId>
+		    <artifactId>junit-jupiter-api</artifactId>
+		    <version>5.12.2</version>
+		    <scope>test</scope>
+		</dependency>
+  </dependencies>
+</project>
