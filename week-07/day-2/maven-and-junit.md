@@ -31,7 +31,7 @@ This is some regular text.
     - building, etc.
 - A package manager sets up the relationship between the project and its dependencies
     - dependencies are other projects/packages/software, etc. that our project needs to run
-    - you include dependencies in the configuration of you Maven project
+    - you include dependencies in the configuration of your Maven project
     - you can then use the packages, classes, and libraries of the other project(s) just like any other class
 
 ### Build Tool
@@ -46,7 +46,7 @@ This is some regular text.
 
 ### Package Manager
 - each piece of software on which our project depends will be included as a dependency
-- the pom.xml file outlines all the depenencies
+- the pom.xml file outlines all the dependencies
 - when the project builds, all the dependent software is included
 - if a dependency has additional dependencies, those are included as well
 - you can add/remove dependencies as you see fit
