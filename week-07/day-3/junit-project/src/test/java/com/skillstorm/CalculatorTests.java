@@ -2,13 +2,15 @@ package com.skillstorm;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.HashSet;
+import java.util.Random;
+import java.util.Set;
+
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-
 
 class CalculatorTests {
 	
@@ -69,6 +71,22 @@ class CalculatorTests {
 		System.out.println("*** BeforeEach ***");
 	}
 	
+	@Test
+	void noArgsConstructor() {
+		Calculator temp = new Calculator();
+		assertTrue(temp instanceof Calculator);
+		assertEquals("Default", temp.type);
+	}
+	
+	@Test
+	void oneArgConstructor() {
+		Calculator temp = new Calculator("Graphing");
+		assertTrue(temp instanceof Calculator);
+		assertEquals("Graphing", temp.type);
+	}
+	
+	
+	
 	// each test will assert something
 	// in this case, we're asserting that the sum of 5 and 7 as added by our Calculator's add method will equal 12
 	// if the assertion is correct, the test finishes and is considered "passed"
@@ -87,6 +105,34 @@ class CalculatorTests {
 		System.out.println("*** Add And Overflow ***");
 		long sum = calc.add(Integer.MAX_VALUE, 1);
 		assertTrue(sum > Integer.MAX_VALUE);
+	}
+	
+	@Test
+	void basicSubtraction( ) {
+		System.out.println("*** Basic Subtraction ***");
+		long difference = calc.subtract(3, 2);
+		assertEquals(1, difference);
+	}
+	
+	@Test
+	void subtractAndUnderflow() {
+		System.out.println("*** Subtract and Underflow ***");
+		long difference = calc.subtract(Integer.MIN_VALUE, Integer.MAX_VALUE);
+		assertTrue(difference < Integer.MIN_VALUE);
+	}
+	
+	@Test
+	void basicMultiplication( ) {
+		System.out.println("*** Basic Multiplication ***");
+		long product = calc.multiply(11, 11);
+		assertEquals(121, product);
+	}
+	
+	@Test
+	void multiplyAndOverflow() {
+		System.out.println("*** Multiply and Overflow ***");
+		long product = calc.multiply(Integer.MAX_VALUE, Integer.MAX_VALUE);
+		assertTrue(product == 4611686014132420609L);
 	}
 	
 	// using assertThrows to assume that a certain action will throw a certain type of exception
@@ -108,7 +154,38 @@ class CalculatorTests {
 	void divideIntegers() {
 		System.out.println("*** Divide Integers ***");
 		double quotient = calc.divide(4, 3);
-		assertEquals(1.33, quotient, 0.004);
+		assertEquals(1.3333, quotient, 0.00004);
+	}
+	
+	@Test
+	void randomTest() {
+		double result = calc.mathClass(5, 5, "Random");
+		Set<Double> possibilities = new HashSet<>(Set.of(0.0, 1.0, 2.0, 3.0, 4.0));
+		
+		// we CAN'T use assertEquals in this case (ignoring the seed piece)
+		// since result could be any of many possibilities,
+		// we need to construct a boolean statement that accounts for all possibilities
+		// in this case, result could be any options listed in the set above
+		assertTrue(possibilities.contains(result));
+	}
+	
+	@Test
+	void powerTest() {
+		double result = calc.mathClass(2, 8, "Power");
+		
+		// when you DO have a specific, singular value you expect
+		// you can use assertEquals to test for that value specifically
+		assertEquals(256.0, result, 0.0000000001);
+	}
+	
+	@Test
+	void defaultTest() {
+		double result = calc.mathClass(6, 7, null);
+		assertEquals(0.0, result);
+		result = calc.mathClass(6, 7, "");
+		assertEquals(0.0, result);
+		result = calc.mathClass(6, 7, "Nonsense");
+		assertEquals(0.0, result);
 	}
 	
 	@AfterEach
