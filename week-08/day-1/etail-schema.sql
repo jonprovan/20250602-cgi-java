@@ -51,10 +51,56 @@ CREATE TABLE `etail`.`customer_detail` (
     REFERENCES `etail`.`customer` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE);
+
+CREATE TABLE `etail`.`online_order` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `order_date` DATE NOT NULL,
+  `customer_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `customer_id_from_order_idx` (`customer_id` ASC) VISIBLE,
+  CONSTRAINT `customer_id_from_order`
+    FOREIGN KEY (`customer_id`)
+    REFERENCES `etail`.`customer` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE);
+    
+CREATE TABLE `etail`.`item` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `item_name` VARCHAR(64) NOT NULL,
+  `price` DECIMAL(6,2) NOT NULL,
+  PRIMARY KEY (`id`));
+
+-- for Spring Boot purposes, you can call your join table whatever you like!
+-- we'll specify the name of the join table in our OnlineOrder class, so it can be whatever
+-- HOWEVER, some frameworks, like NestJS with TypeORM, require specific naming conventions for join tables
+-- <controlling table name>_<plural of controlled table name>_<controlled table name>
+-- so, we're naming our table accordingly -- a good habit to get into
+-- which side is the "controlling" side is up to us, as you'll see in Spring  
+CREATE TABLE `etail`.`online_order_items_item` (
+  `online_order_id` INT NOT NULL,
+  `item_id` INT NOT NULL,
+  PRIMARY KEY (`online_order_id`, `item_id`),
+  INDEX `item_id_from_online_order_items_item_idx` (`item_id` ASC) VISIBLE,
+  CONSTRAINT `online_order_id_from_online_order_items_item`
+    FOREIGN KEY (`online_order_id`)
+    REFERENCES `etail`.`online_order` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `item_id_from_online_order_items_item`
+    FOREIGN KEY (`item_id`)
+    REFERENCES `etail`.`item` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE);
+    
+-- ALTER TABLE will change an existing table however you specify
+-- you DO NOT need to delete the table and recreate it
+
+-- ALTER TABLE `etail`.`order` 
+-- CHANGE COLUMN `date` `order_date` DATE NOT NULL ;
   
 # inserting records into a table
 -- INSERT INTO <db name>.<table name>(column1, column2, etc.) VALUES(column1 value, column2 value, etc.);
-INSERT INTO etail.customer(id, first_name, last_name, age, email) VALUES(6, 'Mark', 'Jeffries', 25, 'mark@gmail.com');
+INSERT INTO etail.customer(id, first_name, last_name, age, email) VALUES(1, 'Mark', 'Jeffries', 25, 'mark@gmail.com');
 -- this works, because id auto-increments and email is allowed to be null and has a default value
 INSERT INTO etail.customer(first_name, last_name, age) VALUES('Ellen', 'Blastowicz', 99);
 -- this DOES NOT work, because last_name is not allowed to be null and does not have a default value
@@ -64,9 +110,102 @@ INSERT INTO etail.customer(first_name, last_name, age, email) VALUES('Janice', '
 																	('Terry', 'Baker', 32, 'banjoking@aol.com'),
 																	('Marjorie', 'Lazarus', 73, 'whatisemail@huh.com');
 
-INSERT INTO etail.customer_detail(detail, customer_id) VALUES('Mark is astonishingly generic and has no standout characteristics.', 6);
-INSERT INTO etail.customer_detail(detail, customer_id) VALUES('Ellen is like Betty White with gigantic biceps.', 7);
-INSERT INTO etail.customer_detail(detail, customer_id) VALUES('Leroy started the raid too early and got everyone killed.', 8);
+INSERT INTO etail.customer_detail(detail, customer_id) VALUES('Mark is astonishingly generic and has no standout characteristics.', 1);
+INSERT INTO etail.customer_detail(detail, customer_id) VALUES('Ellen is like Betty White with gigantic biceps.', 2);
+INSERT INTO etail.customer_detail(detail, customer_id) VALUES('Leroy started the raid too early and got everyone killed.', 3);
+
+INSERT INTO etail.online_order(order_date, customer_id) VALUES('2024-12-21', 1),
+															  ('2025-02-14', 1),
+                                                              ('2023-07-09', 2),
+                                                              ('2025-05-15', 2),
+                                                              ('2024-11-01', 3),
+                                                              ('2025-03-11', 3),
+                                                              ('2022-06-30', 4),
+                                                              ('2023-01-31', 4),
+                                                              ('2024-02-19', 5),
+                                                              ('2025-07-23', 6);
+
+INSERT INTO etail.item (item_name, price) VALUES ('Warm Knit Beanie', 19.99);
+INSERT INTO etail.item (item_name, price) VALUES ('USB Wall Charger', 19.99);
+INSERT INTO etail.item (item_name, price) VALUES ('Avocado Lime Dressing', 4.29);
+INSERT INTO etail.item (item_name, price) VALUES ('Tabletop Fire Pit', 79.99);
+INSERT INTO etail.item (item_name, price) VALUES ('Chocolate Mint Cookies', 2.29);
+INSERT INTO etail.item (item_name, price) VALUES ('Beef Enchilada Casserole', 8.99);
+INSERT INTO etail.item (item_name, price) VALUES ('Biodegradable Dog Waste Bags', 14.99);
+INSERT INTO etail.item (item_name, price) VALUES ('Zucchini', 0.79);
+INSERT INTO etail.item (item_name, price) VALUES ('Insulated Lunch Bag', 24.99);
+INSERT INTO etail.item (item_name, price) VALUES ('Homestyle Chicken Noodle Soup', 2.99);
+INSERT INTO etail.item (item_name, price) VALUES ('Silicone Baking Mat Set', 24.99);
+INSERT INTO etail.item (item_name, price) VALUES ('Coconut Lime Rice', 2.99);
+INSERT INTO etail.item (item_name, price) VALUES ('Inflatable Paddle Board', 349.99);
+INSERT INTO etail.item (item_name, price) VALUES ('Smashed Avocado with Lime', 2.49);
+INSERT INTO etail.item (item_name, price) VALUES ('Teriyaki Chicken Skewers', 8.99);
+INSERT INTO etail.item (item_name, price) VALUES ('Classic Black Dress', 79.99);
+INSERT INTO etail.item (item_name, price) VALUES ('LED Strip Lights', 19.99);
+INSERT INTO etail.item (item_name, price) VALUES ('Nutty Trail Mix', 4.29);
+INSERT INTO etail.item (item_name, price) VALUES ('Zesty Garlic Marinade', 4.49);
+INSERT INTO etail.item (item_name, price) VALUES ('Kids'' Gardening Kit', 24.99);
+INSERT INTO etail.item (item_name, price) VALUES ('Vegan chocolate chip cookies', 4.79);
+INSERT INTO etail.item (item_name, price) VALUES ('Reversible Comforter Set', 89.99);
+INSERT INTO etail.item (item_name, price) VALUES ('Garlic Parmesan Wings', 8.99);
+INSERT INTO etail.item (item_name, price) VALUES ('Travel Sewing Kit', 12.99);
+INSERT INTO etail.item (item_name, price) VALUES ('Cordless Water Flosser', 49.99);
+INSERT INTO etail.item (item_name, price) VALUES ('Maple Oatmeal', 2.99);
+INSERT INTO etail.item (item_name, price) VALUES ('Asian Salad Mix', 3.99);
+INSERT INTO etail.item (item_name, price) VALUES ('Fleece Hoodie', 39.99);
+INSERT INTO etail.item (item_name, price) VALUES ('Magnetic Chess Set', 19.99);
+INSERT INTO etail.item (item_name, price) VALUES ('Crispy Chickpeas', 2.99);
+INSERT INTO etail.item (item_name, price) VALUES ('Electric Food Steamer', 59.99);
+INSERT INTO etail.item (item_name, price) VALUES ('Pet Safety Harness', 24.99);
+INSERT INTO etail.item (item_name, price) VALUES ('Ramen Noodles', 0.99);
+INSERT INTO etail.item (item_name, price) VALUES ('Hibiscus Tea Bags', 3.79);
+INSERT INTO etail.item (item_name, price) VALUES ('Teriyaki Sauce', 2.99);
+INSERT INTO etail.item (item_name, price) VALUES ('Cinnamon Apple Sauce', 2.49);
+INSERT INTO etail.item (item_name, price) VALUES ('Applewood Smoked Bacon', 6.99);
+INSERT INTO etail.item (item_name, price) VALUES ('Organic Cereal Bars', 4.29);
+INSERT INTO etail.item (item_name, price) VALUES ('Vegan Caesar Dressing', 3.99);
+INSERT INTO etail.item (item_name, price) VALUES ('Graphic Print Leggings', 29.99);
+INSERT INTO etail.item (item_name, price) VALUES ('Pet Leash', 15.99);
+INSERT INTO etail.item (item_name, price) VALUES ('Mediterranean Chickpea Salad', 5.99);
+INSERT INTO etail.item (item_name, price) VALUES ('Roasted Garlic Mashed Potatoes', 3.99);
+INSERT INTO etail.item (item_name, price) VALUES ('Children''s Gardening Set', 19.99);
+INSERT INTO etail.item (item_name, price) VALUES ('Pet Grooming Gloves', 9.99);
+INSERT INTO etail.item (item_name, price) VALUES ('Lemon Dill Salmon', 9.99);
+INSERT INTO etail.item (item_name, price) VALUES ('Rice Cakes', 2.29);
+INSERT INTO etail.item (item_name, price) VALUES ('Granola Bars', 4.99);
+INSERT INTO etail.item (item_name, price) VALUES ('Tailored Dress Pants', 79.99);
+INSERT INTO etail.item (item_name, price) VALUES ('Pet Travel Carrier', 39.99);
+
+INSERT INTO etail.online_order_items_item (online_order_id, item_id) VALUES (4, 13);
+INSERT INTO etail.online_order_items_item (online_order_id, item_id) VALUES (10, 27);
+INSERT INTO etail.online_order_items_item (online_order_id, item_id) VALUES (6, 42);
+INSERT INTO etail.online_order_items_item (online_order_id, item_id) VALUES (10, 43);
+INSERT INTO etail.online_order_items_item (online_order_id, item_id) VALUES (1, 38);
+INSERT INTO etail.online_order_items_item (online_order_id, item_id) VALUES (10, 36);
+INSERT INTO etail.online_order_items_item (online_order_id, item_id) VALUES (6, 8);
+INSERT INTO etail.online_order_items_item (online_order_id, item_id) VALUES (9, 20);
+INSERT INTO etail.online_order_items_item (online_order_id, item_id) VALUES (4, 39);
+INSERT INTO etail.online_order_items_item (online_order_id, item_id) VALUES (9, 15);
+INSERT INTO etail.online_order_items_item (online_order_id, item_id) VALUES (5, 15);
+INSERT INTO etail.online_order_items_item (online_order_id, item_id) VALUES (8, 9);
+INSERT INTO etail.online_order_items_item (online_order_id, item_id) VALUES (5, 25);
+INSERT INTO etail.online_order_items_item (online_order_id, item_id) VALUES (5, 32);
+INSERT INTO etail.online_order_items_item (online_order_id, item_id) VALUES (6, 32);
+INSERT INTO etail.online_order_items_item (online_order_id, item_id) VALUES (6, 43);
+INSERT INTO etail.online_order_items_item (online_order_id, item_id) VALUES (4, 48);
+INSERT INTO etail.online_order_items_item (online_order_id, item_id) VALUES (1, 24);
+INSERT INTO etail.online_order_items_item (online_order_id, item_id) VALUES (6, 19);
+INSERT INTO etail.online_order_items_item (online_order_id, item_id) VALUES (9, 21);
+INSERT INTO etail.online_order_items_item (online_order_id, item_id) VALUES (3, 42);
+INSERT INTO etail.online_order_items_item (online_order_id, item_id) VALUES (8, 29);
+INSERT INTO etail.online_order_items_item (online_order_id, item_id) VALUES (3, 35);
+INSERT INTO etail.online_order_items_item (online_order_id, item_id) VALUES (10, 25);
+INSERT INTO etail.online_order_items_item (online_order_id, item_id) VALUES (7, 14);
+INSERT INTO etail.online_order_items_item (online_order_id, item_id) VALUES (3, 27);
+INSERT INTO etail.online_order_items_item (online_order_id, item_id) VALUES (9, 37);
+INSERT INTO etail.online_order_items_item (online_order_id, item_id) VALUES (2, 2);
+INSERT INTO etail.online_order_items_item (online_order_id, item_id) VALUES (1, 25);
+INSERT INTO etail.online_order_items_item (online_order_id, item_id) VALUES (7, 5);
 
 ###############################################
 #                                             #
@@ -164,18 +303,34 @@ SELECT SUM(id) AS total_of_all_ids FROM customer;
 SELECT COUNT(*) AS number_of_customers FROM customer;
 
 
+# Checking our database and practicing joins
+SELECT * FROM customer;
 
+SELECT * FROM customer JOIN customer_detail ON customer.id = customer_detail.customer_id;
 
+SELECT customer.email, customer_detail.detail FROM customer LEFT JOIN customer_detail ON customer.id = customer_detail.customer_id;
 
+-- if you count a specific field, it'll return the number of those that ARE NOT NULL!
+SELECT count(email), count(detail) FROM customer LEFT JOIN customer_detail ON customer.id = customer_detail.customer_id;
 
+SELECT online_order.id, customer.first_name, customer.last_name, customer.email, online_order.order_date 
+	FROM customer JOIN online_order ON customer.id = online_order.customer_id;
+ 
+-- to get our order-to-item records, we have to join twice
+-- once between the orders and the join table, once between the join table and the items
+SELECT * FROM online_order
+		 JOIN online_order_items_item ON online_order.id = online_order_items_item.online_order_id
+         JOIN item ON online_order_items_item.item_id = item.id;
 
+-- GROUP BY can be useful for creating groups of records based on a certain property/column value
+-- you can then run aggregate actions on those groups, like COUNT()...
+SELECT online_order.id AS order_id, COUNT(*) AS num_items FROM online_order
+		 JOIN online_order_items_item ON online_order.id = online_order_items_item.online_order_id
+         JOIN item ON online_order_items_item.item_id = item.id
+         GROUP BY online_order.id;
 
-
-
-
-
-
-
-
-
-
+-- and SUM()
+SELECT online_order.id AS order_id, SUM(price) AS total_price FROM online_order
+		 JOIN online_order_items_item ON online_order.id = online_order_items_item.online_order_id
+         JOIN item ON online_order_items_item.item_id = item.id
+         GROUP BY online_order.id;
