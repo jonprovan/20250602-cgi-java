@@ -2,11 +2,13 @@
 
 # TABLES
 -- label
+-- history
 -- artist
 -- album
 -- song
 
 # RELATIONSHIPS
+-- label-to-label-history = one-to-one
 -- label-to-artist = one-to-many
 -- artist-to-album = many-to-many
 -- album-to-song = one-to-many
@@ -22,6 +24,18 @@ CREATE TABLE `music`.`label` (
   `label_name` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `label_name_UNIQUE` (`label_name` ASC) VISIBLE);
+  
+CREATE TABLE `music`.`label_history` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `history` VARCHAR(1000) NOT NULL,
+  `label_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `label_history_to_label_idx` (`label_id` ASC) VISIBLE,
+  CONSTRAINT `label_history_to_label`
+    FOREIGN KEY (`label_id`)
+    REFERENCES `music`.`label` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE);
   
 CREATE TABLE `music`.`artist` (
   `id` INT NOT NULL AUTO_INCREMENT,
@@ -79,6 +93,17 @@ INSERT INTO music.label (label_name) VALUES ('McDermott, Kautzer and Gislason');
 INSERT INTO music.label (label_name) VALUES ('Kub-Senger');
 INSERT INTO music.label (label_name) VALUES ('Kub and Sons');
 INSERT INTO music.label (label_name) VALUES ('Bashirian, Schumm and Kautzer');
+
+INSERT INTO music.label_history (history, label_id) VALUES ('Unspecified schizophrenia, subchronic', 1);
+INSERT INTO music.label_history (history, label_id) VALUES ('Yaba monkey tumor virus', 2);
+INSERT INTO music.label_history (history, label_id) VALUES ('Polyneuropathy due to other toxic agents', 3);
+INSERT INTO music.label_history (history, label_id) VALUES ('Insect bite, nonvenomous of face, neck, and scalp except eye, without mention of infection', 4);
+INSERT INTO music.label_history (history, label_id) VALUES ('Localized vascularization of cornea', 5);
+INSERT INTO music.label_history (history, label_id) VALUES ('Toxic effect of unspecified gas, fume, or vapor', 6);
+INSERT INTO music.label_history (history, label_id) VALUES ('Malignant neoplasm of palate, unspecified', 7);
+INSERT INTO music.label_history (history, label_id) VALUES ('Satisfactory cervical smear but lacking transformation zone', 8);
+INSERT INTO music.label_history (history, label_id) VALUES ('Tetanic cataract', 9);
+INSERT INTO music.label_history (history, label_id) VALUES ('Multiple myeloma, in remission', 10);
 
 INSERT INTO music.artist (artist_name, label_id) VALUES ('Toiboid Massingberd', 7);
 INSERT INTO music.artist (artist_name, label_id) VALUES ('Shandra Abreheart', 7);
