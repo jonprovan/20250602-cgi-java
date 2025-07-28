@@ -22,3 +22,34 @@ public class MusicApiApplication {
 	}
 
 }
+
+/*
+ * HOW DOES THE SPRING FRAMEWORK WORK?
+ * 
+ * Spring is largely centered around the idea of a Bean
+ * A Bean is an encapsulated class or interface that can be "injected" into another class via the ApplicationContext
+ * When we designate a class as a Bean, Component, Controller, Service, Repository, etc.,
+ *   we're making it available in the ApplicationContext
+ * Once something is in the ApplicationContext, we can supply it to another class via Autowired, a setter, or a constructor
+ *   WITHOUT having to manually instantiate it
+ *   
+ * This is called "dependency injection"
+ * - our application's dependency on other software via the pom.xml IS NOT dependency injection!
+ * - our service requiring a repository of a certain type to function IS dependency injection!
+ * 
+ * YOU CANNOT INJECT a class that has not been annotated as a Bean or Component of some sort
+ * If the application cannot find a Bean of the correct type in the ApplicationContext, it will throw an Exception and stop before it's all the way up
+ * 
+ * Why does it work this way?
+ * - Reason 1 -- this takes the control away from the user -- you MUST use this Bean as-is rather than customizing your own
+ * - Reason 2 -- you can swap out what Beans are available at runtime to create different "profiles" for your app, like dev/test/prod, etc.
+ * --- you could have a different database connection, set of endpoints, etc. for your dev profile vs. your prod profile
+ * 
+ * Inversion-Of-Control, IoC, the IoC Container, etc.
+ * - by default, each Bean is a Singleton!
+ * - there will only ever be one LabelService object, for example
+ * - also, you don't customize it in any way, you just take the one that's available
+ * - this plays into best practices for how to inject dependencies
+ * - the control over the construction of the Bean should lie entirely with the Bean creator, NOT the user injecting the Bean
+ * 
+ */

@@ -1,6 +1,10 @@
 package com.skillstorm.music.services;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.skillstorm.music.models.Label;
@@ -11,14 +15,70 @@ import com.skillstorm.music.repositories.LabelRepository;
 @Service
 public class LabelService {
 	
+	// this is dependency injection happening in real-time!
 	// this automatically searches for a Bean of type LabelRepository and populates this variable with it
 	// there's a best-practices way to do this coming next week
+	
+	// this is field injection -- however, we could construct a LabelService using the default constructor
+	// and the Autowired part wouldn't happen! So the repo object would be null
+	// also, we can change the value after the fact to null or something else
+//	@Autowired
+	private final LabelRepository repo;
+	
+	// this is setter injection
+	// this automatically runs when the Bean is created
+	// it also allows us to get around the null problem by setting repo to the right value, even if we instantiate our own
+	// this still allows multiple object construction, which is not good! 
+//	@Autowired
+//	public void setRepo(LabelRepository repo) {
+//		this.repo = repo;
+//	}
+	
+	// this is constructor injection
+	// it automatically populates the repo variable when the Bean is instantiated
+	// we can now make the repo variable final
+	// and we're now only ever going to have one of this class
+	// @Autowired is optional here, since it's now the only constructor
 	@Autowired
-	private LabelRepository repo;
+	public LabelService(LabelRepository repo) {
+		this.repo = repo;
+	}
 	
 	// find all labels
-	public Iterable<Label> findAll() {
-		return this.repo.findAll();
+	// switching to a ResponseEntity so we can control the status code, headers, what's in the body, etc.
+	// this uses a builder pattern where we can stack actions on each other to construct the full ResponseEntity
+	public ResponseEntity<Iterable<Label>> findAll() {
+		Iterable<Label> labels = this.repo.findAll();
+		
+		if (!labels.iterator().hasNext())
+			return ResponseEntity.status(HttpStatus.NOT_FOUND)
+								 .body(null);
+		
+		return ResponseEntity.ok(labels);
 	}
+	
+	// find a label by id
+	public ResponseEntity<Label> findById(int id) {
+		// findById returns an optional -- the record may or may not be present
+		Optional<Label> label = this.repo.findById(id);
+		
+		if (label.isPresent())
+			return ResponseEntity.ok(label.get());
+		
+		return ResponseEntity.notFound().build();
+	}
+	
+	// delete by id
+	public ResponseEntity<Void> deleteById(int id) {
+		this.repo.deleteById(id);
+		
+		return ResponseEntity.noContent().build();
+	}
+	
+	
+	
+	
+	
+	
 
 }
