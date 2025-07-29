@@ -219,7 +219,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"history\": \"<insert value here>\",\r\n    \"labelId\": 0\r\n}",
+							"raw": "{\r\n    \"history\": \"<insert value here>\",\r\n    \"label\": {\r\n        \"id\": 0\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

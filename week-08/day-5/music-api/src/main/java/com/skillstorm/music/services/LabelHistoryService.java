@@ -44,13 +44,13 @@ public class LabelHistoryService {
 	public ResponseEntity<LabelHistory> createOne(LabelHistoryDTO dto) {
 		
 		return ResponseEntity.status(HttpStatus.CREATED)
-							 .body(this.repo.save(new LabelHistory(0, dto.history(), dto.labelId())));
+							 .body(this.repo.save(new LabelHistory(0, dto.history(), dto.label())));
 	}
 	
 	// update one
 	public ResponseEntity<LabelHistory> updateOne(int id, LabelHistoryDTO dto) {
 		if (this.repo.existsById(id))
-			return ResponseEntity.ok(this.repo.save(new LabelHistory(id, dto.history(), dto.labelId())));
+			return ResponseEntity.ok(this.repo.save(new LabelHistory(id, dto.history(), dto.label())));
 		
 		return ResponseEntity.status(HttpStatus.NOT_FOUND)
 							 .build();

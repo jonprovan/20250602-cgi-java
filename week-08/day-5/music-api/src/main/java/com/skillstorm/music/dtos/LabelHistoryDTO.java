@@ -1,5 +1,5 @@
 package com.skillstorm.music.dtos;
 
-public record LabelHistoryDTO(String history, int labelId) {
+import com.skillstorm.music.models.Label;
 
-}
+public record LabelHistoryDTO(String history, Label label) {}
