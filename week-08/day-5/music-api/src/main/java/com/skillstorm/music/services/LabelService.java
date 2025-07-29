@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.skillstorm.music.dtos.LabelDTO;
 import com.skillstorm.music.models.Label;
 import com.skillstorm.music.repositories.LabelRepository;
 
@@ -66,6 +67,29 @@ public class LabelService {
 			return ResponseEntity.ok(label.get());
 		
 		return ResponseEntity.notFound().build();
+	}
+	
+	// create a new label
+	// taking in our DTO with the label name
+	public ResponseEntity<Label> createOne(LabelDTO dto) {
+		
+		// save is the method for BOTH create AND update
+		// it requires a full Label object
+		// if the ID does not match one in the DB, it will create a new record
+		// if the ID DOES match, it will OVERWRITE that record
+		return ResponseEntity.status(HttpStatus.CREATED)
+							 .body(this.repo.save(new Label(0, dto.labelName())));
+	}
+	
+	// update one
+	// we have to check if the id exists in the database before saving
+	// because of the logic above -- a PUT method should NOT create a new record!
+	public ResponseEntity<Label> updateOne(int id, LabelDTO dto) {
+		if (this.repo.existsById(id))
+			return ResponseEntity.ok(this.repo.save(new Label(id, dto.labelName())));
+		
+		return ResponseEntity.status(HttpStatus.NOT_FOUND)
+							 .build();
 	}
 	
 	// delete by id

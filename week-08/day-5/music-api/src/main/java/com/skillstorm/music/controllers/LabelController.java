@@ -5,9 +5,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skillstorm.music.dtos.LabelDTO;
 import com.skillstorm.music.models.Label;
 import com.skillstorm.music.services.LabelService;
 
@@ -46,6 +50,20 @@ public class LabelController {
 	@GetMapping("/{labelId}")
 	public ResponseEntity<Label> findById(@PathVariable("labelId") int id) {
 		return this.service.findById(id); 
+	}
+	
+	// create one
+	// the @RequestBody annotation states that the JSON in the request body should be mapped to this type of object, called this variable name
+	// if the user submits a malformed request body, they'll get an error message back
+	@PostMapping
+	public ResponseEntity<Label> createOne(@RequestBody LabelDTO dto) {
+		return this.service.createOne(dto);
+	}
+	
+	// update one
+	@PutMapping("/{id}")
+	public ResponseEntity<Label> updateOne(@PathVariable int id, @RequestBody LabelDTO dto) {
+		return this.service.updateOne(id, dto);
 	}
 	
 	@DeleteMapping("/{id}")
