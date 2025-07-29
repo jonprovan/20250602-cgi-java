@@ -35,6 +35,7 @@ public class Label {
 	@Column
 	private String labelName;
 	
+	// on the non-controlling side, we only need to state the property on the controlling side that maps the relationship
 	@OneToOne(mappedBy = "label")
 	@JsonIgnoreProperties({"label"})
 	private LabelHistory labelHistory;
