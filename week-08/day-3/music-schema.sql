@@ -30,6 +30,7 @@ CREATE TABLE `music`.`label_history` (
   `history` VARCHAR(1000) NOT NULL,
   `label_id` INT NOT NULL,
   PRIMARY KEY (`id`),
+  UNIQUE INDEX `label_history_label_id_UNIQUE` (`label_id` ASC) VISIBLE,
   INDEX `label_history_to_label_idx` (`label_id` ASC) VISIBLE,
   CONSTRAINT `label_history_to_label`
     FOREIGN KEY (`label_id`)

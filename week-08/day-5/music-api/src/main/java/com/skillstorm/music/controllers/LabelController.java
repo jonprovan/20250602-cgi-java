@@ -66,6 +66,7 @@ public class LabelController {
 		return this.service.updateOne(id, dto);
 	}
 	
+	// delete by id
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deleteById(@PathVariable int id) {
 		return this.service.deleteById(id);
