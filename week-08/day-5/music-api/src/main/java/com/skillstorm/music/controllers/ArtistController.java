@@ -24,7 +24,7 @@ public class ArtistController {
 		this.service = service;
 	}
 	
-	// find all labels
+	// find all
 	@GetMapping
 	public ResponseEntity<Iterable<Artist>> findAll() {
 		return this.service.findAll();

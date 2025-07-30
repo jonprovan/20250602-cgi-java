@@ -33,7 +33,7 @@ public class LabelController {
 		this.service = service;
 	}
 	
-	// find all labels
+	// find all
 	// this annotation specifies that this method will handle GET requests to /labels with no additional suffix
 	@GetMapping
 	public ResponseEntity<Iterable<Label>> findAll() {

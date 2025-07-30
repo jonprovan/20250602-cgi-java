@@ -10,41 +10,41 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.skillstorm.music.dtos.LabelHistoryDTO;
-import com.skillstorm.music.models.LabelHistory;
-import com.skillstorm.music.services.LabelHistoryService;
+import com.skillstorm.music.dtos.AlbumDTO;
+import com.skillstorm.music.models.Album;
+import com.skillstorm.music.services.AlbumService;
 
 @RestController
-@RequestMapping("/label-histories")
-public class LabelHistoryController {
+@RequestMapping("/albums")
+public class AlbumController {
 	
-	private final LabelHistoryService service;
+	private final AlbumService service;
 	
-	public LabelHistoryController(LabelHistoryService service) {
+	public AlbumController(AlbumService service) {
 		this.service = service;
 	}
 	
 	// find all
 	@GetMapping
-	public ResponseEntity<Iterable<LabelHistory>> findAll() {
+	public ResponseEntity<Iterable<Album>> findAll() {
 		return this.service.findAll();
 	}
 	
 	// find by id
 	@GetMapping("/{id}")
-	public ResponseEntity<LabelHistory> findById(@PathVariable int id) {
+	public ResponseEntity<Album> findById(@PathVariable int id) {
 		return this.service.findById(id); 
 	}
 	
 	// create one
 	@PostMapping
-	public ResponseEntity<LabelHistory> createOne(@RequestBody LabelHistoryDTO dto) {
+	public ResponseEntity<Album> createOne(@RequestBody AlbumDTO dto) {
 		return this.service.createOne(dto);
 	}
 	
 	// update one
 	@PutMapping("/{id}")
-	public ResponseEntity<LabelHistory> updateOne(@PathVariable int id, @RequestBody LabelHistoryDTO dto) {
+	public ResponseEntity<Album> updateOne(@PathVariable int id, @RequestBody AlbumDTO dto) {
 		return this.service.updateOne(id, dto);
 	}
 	

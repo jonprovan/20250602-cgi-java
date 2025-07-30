@@ -44,13 +44,13 @@ public class ArtistService {
 	public ResponseEntity<Artist> createOne(ArtistDTO dto) {
 		
 		return ResponseEntity.status(HttpStatus.CREATED)
-							 .body(this.repo.save(new Artist(0, dto.artistName(), dto.label())));
+							 .body(this.repo.save(new Artist(0, dto.artistName(), dto.label(), dto.albums())));
 	}
 	
 	// update one
 	public ResponseEntity<Artist> updateOne(int id, ArtistDTO dto) {
 		if (this.repo.existsById(id))
-			return ResponseEntity.ok(this.repo.save(new Artist(id, dto.artistName(), dto.label())));
+			return ResponseEntity.ok(this.repo.save(new Artist(id, dto.artistName(), dto.label(), dto.albums())));
 		
 		return ResponseEntity.status(HttpStatus.NOT_FOUND)
 							 .build();
