@@ -78,7 +78,7 @@ public class LabelService {
 		// if the ID does not match one in the DB, it will create a new record
 		// if the ID DOES match, it will OVERWRITE that record
 		return ResponseEntity.status(HttpStatus.CREATED)
-							 .body(this.repo.save(new Label(0, dto.labelName(), null)));
+							 .body(this.repo.save(new Label(0, dto.labelName(), null, null)));
 	}
 	
 	// update one
@@ -86,7 +86,7 @@ public class LabelService {
 	// because of the logic above -- a PUT method should NOT create a new record!
 	public ResponseEntity<Label> updateOne(int id, LabelDTO dto) {
 		if (this.repo.existsById(id))
-			return ResponseEntity.ok(this.repo.save(new Label(id, dto.labelName(), null)));
+			return ResponseEntity.ok(this.repo.save(new Label(id, dto.labelName(), null, null)));
 		
 		return ResponseEntity.status(HttpStatus.NOT_FOUND)
 							 .build();

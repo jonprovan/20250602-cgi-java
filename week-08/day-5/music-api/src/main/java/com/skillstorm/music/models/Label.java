@@ -1,5 +1,7 @@
 package com.skillstorm.music.models;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Column;
@@ -7,6 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
@@ -40,15 +43,20 @@ public class Label {
 	@JsonIgnoreProperties({"label"})
 	private LabelHistory labelHistory;
 	
+	@OneToMany(mappedBy = "label")
+	@JsonIgnoreProperties({"label"})
+	private List<Artist> artists;
+	
 	public Label() {
 		super();
 	}
 
-	public Label(int id, String labelName, LabelHistory labelHistory) {
+	public Label(int id, String labelName, LabelHistory labelHistory, List<Artist> artists) {
 		super();
 		this.id = id;
 		this.labelName = labelName;
 		this.labelHistory = labelHistory;
+		this.artists = artists;
 	}
 
 	public int getId() {
@@ -73,6 +81,14 @@ public class Label {
 
 	public void setLabelHistory(LabelHistory labelHistory) {
 		this.labelHistory = labelHistory;
+	}
+
+	public List<Artist> getArtists() {
+		return artists;
+	}
+
+	public void setArtists(List<Artist> artists) {
+		this.artists = artists;
 	}
 	
 }
