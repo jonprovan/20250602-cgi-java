@@ -9,14 +9,20 @@ import org.springframework.stereotype.Service;
 import com.skillstorm.music.dtos.AlbumDTO;
 import com.skillstorm.music.models.Album;
 import com.skillstorm.music.repositories.AlbumRepository;
+import com.skillstorm.music.repositories.ArtistRepository;
+import com.skillstorm.music.models.Artist;
+import java.util.LinkedList;
+import java.util.List;
 
 @Service
 public class AlbumService {
 	
 	private final AlbumRepository repo;
-	
-	public AlbumService(AlbumRepository repo) {
+	private final ArtistRepository artistRepo;
+
+	public AlbumService(AlbumRepository repo, ArtistRepository artistRepo) {
 		this.repo = repo;
+		this.artistRepo = artistRepo;
 	}
 	
 	// find all
@@ -49,11 +55,42 @@ public class AlbumService {
 	
 	// update one
 	public ResponseEntity<Album> updateOne(int id, AlbumDTO dto) {
-		if (this.repo.existsById(id))
-			return ResponseEntity.ok(this.repo.save(new Album(id, dto.albumName(), dto.releaseYear(), dto.artists())));
-		
+		if (this.repo.existsById(id)) {
+			
+			// get the album from the DB, then set the name and year from the DTO
+			Album album = this.repo.findById(id).get();
+			album.setAlbumName(dto.albumName());
+			album.setReleaseYear(dto.releaseYear());
+			
+			// Get all artist IDs from the DTO, add them to a list, then assemble a list of artist records from the DB
+			List<Integer> artistIds = new LinkedList<>();
+			for (Artist artist : dto.artists()) {
+				artistIds.add(artist.getId());
+			}
+			List<Artist> artists = (List<Artist>)this.artistRepo.findAllById(artistIds);
+			
+			// if an artist in the album from the DB is not in the DTO list, remove the album from that artist's albums list
+			List<Artist> previousArtists = album.getArtists();
+			for (Artist previousArtist : previousArtists) {
+				if (!artists.contains(previousArtist)) {
+					previousArtist.getAlbums().remove(album);
+				}
+			}
+			
+			// if any artist to be added does not have this album on their list, add it
+			for (Artist artist : artists) {
+				if (!artist.getAlbums().contains(album)) {
+					artist.getAlbums().add(album);
+				}
+			}
+			
+			// finally, apply the updated artists list to the album
+			album.setArtists(artists);
+			
+			return ResponseEntity.ok(this.repo.save(album));
+		}
 		return ResponseEntity.status(HttpStatus.NOT_FOUND)
-							 .build();
+								 .build();
 	}
 	
 	// delete by id

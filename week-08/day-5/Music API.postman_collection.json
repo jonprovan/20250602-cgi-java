@@ -391,7 +391,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"artistName\": \"<insert value here>\",\r\n    \"label\": {\r\n        \"id\": 0\r\n    }\r\n}",
+							"raw": "{\r\n    \"artistName\": \"<insert value here>\",\r\n    \"label\": {\r\n        \"id\": 0\r\n    },\r\n    \"albums\": [\r\n        {\r\n            \"id\": 0\r\n        }\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -492,7 +492,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"albumName\": \"<insert value here>\",\r\n    \"releaseYear\": 0,\r\n    \"artists\": [\r\n        {\r\n            \"id\": 0\r\n        }\r\n    ]\r\n}",
+							"raw": "{\r\n    \"albumName\": \"<insert value here>\",\r\n    \"releaseYear\": 0\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
