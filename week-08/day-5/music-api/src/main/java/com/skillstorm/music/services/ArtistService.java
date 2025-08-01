@@ -26,8 +26,13 @@ public class ArtistService {
 	}
 	
 	// find all
-	public ResponseEntity<Iterable<Artist>> findAll() {
-		Iterable<Artist> artists = this.repo.findAll();
+	public ResponseEntity<Iterable<Artist>> findAll(String startsWith) {
+		Iterable<Artist> artists;
+		
+		if (startsWith != null)
+			artists = this.repo.findByArtistNameStartingWith(startsWith);
+		else
+			artists = this.repo.findAll();
 		
 		if (!artists.iterator().hasNext())
 			return ResponseEntity.status(HttpStatus.NOT_FOUND)
@@ -91,6 +96,30 @@ public class ArtistService {
 		}
 		return ResponseEntity.status(HttpStatus.NOT_FOUND)
 								 .build();
+	}
+	
+	// connect artist to album
+	public ResponseEntity<Void> connectArtistToAlbum(int artistId, String[] albumIds) {
+		
+		if (albumIds != null && albumIds.length > 0) {
+			for (String albumId : albumIds) {
+				this.repo.connectArtistToAlbum(artistId, Integer.parseInt(albumId));
+			}
+		}
+		
+		return ResponseEntity.status(HttpStatus.CREATED).build();
+	}
+	
+	// disconnect artist from album
+	public ResponseEntity<Void> disconnectArtistFromAlbum(int artistId, String[] albumIds) {
+		
+		if (albumIds != null && albumIds.length > 0) {
+			for (String albumId : albumIds) {
+				this.repo.disconnectArtistFromAlbum(artistId, Integer.parseInt(albumId));
+			}
+		}
+		
+		return ResponseEntity.noContent().build();
 	}
 	
 	// delete by id

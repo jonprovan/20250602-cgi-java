@@ -26,8 +26,15 @@ public class AlbumService {
 	}
 	
 	// find all
-	public ResponseEntity<Iterable<Album>> findAll() {
-		Iterable<Album> albums = this.repo.findAll();
+	public ResponseEntity<Iterable<Album>> findAll(String from, String to) {
+		
+		Iterable<Album> albums;
+		
+		if (from != null && to != null) {
+			albums = this.repo.findByReleaseYearBetween(Integer.parseInt(from), Integer.parseInt(to));	
+		} else {
+			albums = this.repo.findAll();
+		}
 		
 		if (!albums.iterator().hasNext())
 			return ResponseEntity.status(HttpStatus.NOT_FOUND)

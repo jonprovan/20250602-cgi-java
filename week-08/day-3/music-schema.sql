@@ -83,6 +83,11 @@ CREATE TABLE `music`.`artist_albums_album` (
     REFERENCES `music`.`album` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE);
+
+CREATE TABLE `music`.`executive` (
+  `experience` INT NOT NULL,
+  `first_name` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`experience`, `first_name`));
     
 INSERT INTO music.label (label_name) VALUES ('Connelly, Kilback and Lockman');
 INSERT INTO music.label (label_name) VALUES ('Kemmer, Nicolas and Connelly');
@@ -649,3 +654,14 @@ INSERT INTO music.artist_albums_album (artist_id, album_id) VALUES (12, 35);
 INSERT INTO music.artist_albums_album (artist_id, album_id) VALUES (1, 37);
 INSERT INTO music.artist_albums_album (artist_id, album_id) VALUES (2, 11);
 INSERT INTO music.artist_albums_album (artist_id, album_id) VALUES (7, 38);
+
+INSERT INTO music.executive (experience, first_name) VALUES (2, 'Judon');
+INSERT INTO music.executive (experience, first_name) VALUES (3, 'Glad');
+INSERT INTO music.executive (experience, first_name) VALUES (3, 'Dre');
+INSERT INTO music.executive (experience, first_name) VALUES (3, 'Violetta');
+INSERT INTO music.executive (experience, first_name) VALUES (3, 'Sharla');
+INSERT INTO music.executive (experience, first_name) VALUES (5, 'Coral');
+INSERT INTO music.executive (experience, first_name) VALUES (1, 'Verge');
+INSERT INTO music.executive (experience, first_name) VALUES (5, 'Frederic');
+INSERT INTO music.executive (experience, first_name) VALUES (2, 'Gerek');
+INSERT INTO music.executive (experience, first_name) VALUES (2, 'Clementina');
