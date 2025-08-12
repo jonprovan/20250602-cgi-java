@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Forms</title>
+
+        <style>
+            label, button {
+                display: block;
+                margin: 12px 0;
+            }
+        </style>
+    </head>
+    <body>
+
+        <h1>FORMS</h1>
+
+        <!--
+            forms are used to collect user information of some sort
+            - login, contact info, search bars, filters, etc.
+            we'll use react-hook-form in React
+            but, it's helpful to know how these are structured in HTML
+        -->
+
+        <!-- action is where the form is going, method is usually get or post
+            get might be something like get all products with a query parameter filter
+            post might be something like logging in or creating a new record, etc. -->
+        <form action="https://www.w3schools.com/action_page.php" method="post">
+
+            <!-- a label lets coders know which label goes with which input
+                 the for property should match the input's id -->
+            <label for="formName">Name:</label>
+            <!-- an input takes in some kind of user information
+                 the type is text, number, date, color, etc. -- whatever you want to collect
+                 id matches the label's for property
+                 name is REQUIRED and will show up as the key to the value submitted -->
+            <input type="text" id="formName" name="formName">
+
+            <!-- a number type, including some rudimentary validation -->
+            <label for="formAge">Age:</label>
+            <input type="number" id="formAge" name="formAge" min="0" max="100" step="10">
+
+            <label for="formBirthday">Birthday:</label>
+            <input type="date" id="formBirthday" name="formBirthday">
+
+            <!-- for yes/no questions, we can use a checkbox -->
+            <label for="formLikesCats">Likes Cats:</label>
+            <!-- the value is what gets submitted if the checkbox is checked, otherwise it's "on" -->
+            <input type="checkbox" id="formLikesCats" name="formLikesCats" value="yes">
+
+            <!-- for mutually-exclusive choices with multiple options, use radio buttons -->
+            <!-- the name properties MUST match with radio buttons to make them work as a group -->
+            <label for="formPizzaPreference">Pizza Preference:</label>
+            <div>
+                <input type="radio" id="formPizzaPreferenceA" name="formPizzaPreference" value="cheese"> Cheese
+            </div>
+            <div>
+                <input type="radio" id="formPizzaPreferenceB" name="formPizzaPreference" value="pepperoni"> Pepperoni
+            </div>
+            <div>
+                <input type="radio" id="formPizzaPreferenceC" name="formPizzaPreference" value="pineapple"> Pineapple
+            </div>
+            
+            <!-- another option for this is a select, which functions as a dropdown -->
+            <!-- for each option, the value is what will be submitted with the form, and the text inside the tag is what will show up in the dropdown -->
+            <label for="formHomeState">Home State:</label>
+            <select name="formHomeState" id="formHomeState">
+                <option value="CA">California</option>
+                <option value="NY">New York</option>
+                <option value="TX">Texas</option>
+            </select>
+
+
+
+            <!-- a submit button can be implemented either of these two ways -->
+            <!-- <input type="submit" value="Submit Form"> -->
+            <button type="submit">Submit Form</button>
+
+        </form>
+        
+    </body>
+</html>

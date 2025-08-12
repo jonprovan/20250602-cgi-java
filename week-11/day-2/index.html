@@ -1,0 +1,119 @@
+<!-- this is an HTML comment -- Ctrl-/ to apply one to whatever you have selected -->
+<!-- 
+    no such thing as a different multi-line comment in HTML
+    just wrap the comment tag around whatever you want to comment out
+-->
+
+<!-- the default starting page for any website is yourdomain.com/index.html
+     even our React app will have an index.html
+     naming convention for HTML pages is lowercase with dashes
+     e.g., about-us.html, current-available-products.html -->
+
+<!-- this indicates to the browser that this file should be interpreted as HTML -->
+<!DOCTYPE html>
+
+<!-- this html tag contains the entire page, both head and body -->
+<html lang="en">
+
+    <!-- the head tag contains information ABOUT the page -->
+    <!-- things in the head are NOT supposed to show up on the page -->
+    <head>
+        <!-- metadata can describe things like keywords, author, and description, etc. -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="keywords" content="HTML, CSS, JavaScript">
+        <!-- this is the name that will show up in the tab/browser window -->
+        <title>My First HTML Page</title>
+
+        <!-- this is linking in an external stylesheet for use on this page -->
+        <link rel="stylesheet" href="example.css">
+
+        <!-- this is a link to an external JS script file -->
+        <script type="text/javascript" src="example.js"></script>
+        <!-- or an actual script stored on the page itself -->
+        <script>
+            function myFunction() {
+                return 45;
+            }
+        </script>
+    </head>
+
+    <!-- the body tag should hold ALL the content you actually want displayed to your user -->
+    <body>
+
+        <!-- for body content, we have many types of tag -->
+        <!-- h1 - h6 are headings -->
+        <!-- note that these tags have opening and closing tags -- some tags are self-closing, like img, and we'll see that shortly -->
+        <h1>Heading 1</h1>
+        <h2>Heading 2</h2>
+        <h3>Heading 3</h3>
+        <h4>Heading 4</h4>
+        <h5>Heading 5</h5>
+        <h6>Heading 6</h6>
+
+        <!-- p is for paragraphs -->
+        <p>This is a paragraph.</p>
+        <p>This is a paragraph.</p>
+        <p>This is a paragraph.</p>
+        
+        <!-- ol and ul are for lists -->
+        <!-- ol is an ordered list (numbered, etc.), ul is unordered (bullets) -->
+        <!-- each list will contain several li tags (list items) -->
+        <ol>
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 3</li>
+        </ol>
+        <ul>
+            <li>Item A</li>
+            <li>Item B</li>
+            <li>Item C</li>
+        </ul>
+
+        <!-- within text, you can tag sections to make them bold, italic, etc. -->
+        <!-- <strong> for bold text, <em> for italic text -->
+        <!-- note that if you have tags that span across other tags, like the strong tag at the end of the first paragraph, you should break them up to maintain proper nesting and keep your DOM structure clean -->
+        <p>Lorem, ipsum dolor sit <strong>amet consectetur adipisicing</strong> elit. Aliquid pariatur officiis possimus, id qui autem nisi illo fuga debitis <em>nostrum nulla sequi delectus sapiente</em> in consequuntur laborum illum perspiciatis? <strong>Iure.</strong></p>
+
+        <p><strong>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit mollitia obcaecati ab atque</strong> explicabo itaque, veniam ea? Perferendis nulla illum laboriosam molestias assumenda, impedit ratione distinctio perspiciatis eaque a fugit.</p>
+
+        <!-- there are a series of tags that don't provide any direct formatting like the ones above but which chop up the page into sections or divisions that can be helpful for readability, styling, etc. -->
+        <!--
+            div, section, article, aside, header, footer, main, nav
+        -->
+        <!-- each of these has identical styling and can contain other tags, etc. -->
+        <div>
+            Some content in a div.
+        </div>
+
+        <section>
+            Some content in a section.
+        </section>
+
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae odit placeat laudantium nam ea doloremque aperiam saepe. Porro iure tenetur aspernatur nisi in, dignissimos, beatae veniam praesentium ratione corrupti corporis.</p>
+
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae odit placeat laudantium nam ea doloremque aperiam saepe. Porro iure tenetur aspernatur nisi in, dignissimos, beatae veniam praesentium ratione corrupti corporis.</p>
+
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae odit placeat laudantium nam ea doloremque aperiam saepe. Porro iure tenetur aspernatur nisi in, dignissimos, beatae veniam praesentium ratione corrupti corporis.</p>
+
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae odit placeat laudantium nam ea doloremque aperiam saepe. Porro iure tenetur aspernatur nisi in, dignissimos, beatae veniam praesentium ratione corrupti corporis.</p>
+
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae odit placeat laudantium nam ea doloremque aperiam saepe. Porro iure tenetur aspernatur nisi in, dignissimos, beatae veniam praesentium ratione corrupti corporis.</p>
+
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae odit placeat laudantium nam ea doloremque aperiam saepe. Porro iure tenetur aspernatur nisi in, dignissimos, beatae veniam praesentium ratione corrupti corporis.</p>
+
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae odit placeat laudantium nam ea doloremque aperiam saepe. Porro iure tenetur aspernatur nisi in, dignissimos, beatae veniam praesentium ratione corrupti corporis.</p>
+
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae odit placeat laudantium nam ea doloremque aperiam saepe. Porro iure tenetur aspernatur nisi in, dignissimos, beatae veniam praesentium ratione corrupti corporis.</p>
+
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae odit placeat laudantium nam ea doloremque aperiam saepe. Porro iure tenetur aspernatur nisi in, dignissimos, beatae veniam praesentium ratione corrupti corporis.</p>
+
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae odit placeat laudantium nam ea doloremque aperiam saepe. Porro iure tenetur aspernatur nisi in, dignissimos, beatae veniam praesentium ratione corrupti corporis.</p>
+
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae odit placeat laudantium nam ea doloremque aperiam saepe. Porro iure tenetur aspernatur nisi in, dignissimos, beatae veniam praesentium ratione corrupti corporis.</p>
+
+        <h2 id="homepage-anchor">MY ANCHOR!</h2>
+
+    </body>
+
+</html>

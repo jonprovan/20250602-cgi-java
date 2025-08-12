@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tables</title>
+
+    <!-- some local styles, ignore this for now -->
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th {
+            text-align: left;
+        }
+
+        th, td {
+            padding: 0.5em;
+        }
+
+        tfoot {
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>TABLES</h1>
+
+    <!--
+        tables are useful for laying out grid-type information
+        they SHOULD NOT be used for page layout
+        each table has several tags
+        table = the entire table
+        thead = the table header
+        tbody = the table body
+        tfoot = the table footer
+        tr = a table row
+        th = a table header cell
+        td = a table data cell
+    -->
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Age</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>John</td>
+                <td>Doe</td>
+                <td>25</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Jane</td>
+                <td>Smith</td>
+                <td>30</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Methuselah Methuselah Methuselah</td>
+                <td>Jackson-Miller</td>
+                <td>99</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Alaina</td>
+                <td>Von Trapp</td>
+                <td>60</td>
+            </tr>
+        </tbody>
+
+        <tfoot>
+            <tr>
+                <td colspan="3">Total</td>
+                <td>189</td>
+            </tr>
+        </tfoot>
+    </table>
+    
+</body>
+</html>

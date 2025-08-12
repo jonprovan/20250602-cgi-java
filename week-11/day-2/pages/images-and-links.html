@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Images And Links</title>
+</head>
+<body>
+
+    <h1>Images And Links</h1>
+
+    <!-- to include an image, we can store it locally and refer to it, or we can link to it wherever it might be on the web  -->
+
+    <!-- when using local images, use relative paths, and when using remote images, use absolute paths -->
+
+    <!-- within the image tag, src is where the file lives
+         alt is text to display if the link is broken or for screen readers
+         GET IN THE HABIT OF ALWAYS FILLING OUT ALT TEXT!! -->
+    <!-- this is a remote image with absolute pathing -->
+    <!-- there's a better way to do image sizing with CSS, coming later -->
+    <!-- note that this is a self-closing tag -->
+    <!-- with self-closing tags, you'll often seem them with a /> at the end
+         no longer required in HTML 5, but React will often require them -->
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Longjing_tea_steeping_in_gaiwan.jpg/1024px-Longjing_tea_steeping_in_gaiwan.jpg" alt="Some Green Tea" width="300px">
+
+    <!-- this is a local image with relative pathing -->
+    <img src="../images/longjing-tea.jpg" alt="Some Local Green Tea" width="200px" />
+
+    <!-- a horizontal rule, i.e., a line across the page, also self-closing -->
+    <hr>
+
+    <!-- this p tag includes a self-closing br tag for a line break -->
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda aspernatur, dolores consectetur nesciunt similique<br>inventore eaque rem natus illo incidunt, nostrum ratione sint ut, dolore quos qui mollitia eos nobis?</p>
+
+    <!-- links use an a tag for "anchor" -->
+    <!-- absolute and relative pathing apply here as well -->
+    <!-- href = HTML reference, and it's where the linked page is located -->
+    <!-- use the target="_blank" property to say if a link should open in a new tab -->
+    <!-- links to remote sites traditionally open in new tabs, whereas local links stay in the same tab -->
+    <p>
+        <a href="https://en.wikipedia.org/wiki/Tea" target="_blank">
+            <img src="../images/longjing-tea.jpg" 
+                 alt="Some Green Tea" 
+                 width="100px">
+        </a>
+    </p>
+    <p>
+        <!-- this link goes to a specific spot on the webpage by including the anchor for that spot, which is the tag's id at that location -->
+        <a href="https://en.wikipedia.org/wiki/Tea#Cultivation_and_harvesting">The Tea Page on Wikipedia</a>
+    </p>
+    <p>
+        <a href="../index.html">My index.html Page</a>
+    </p>
+    <!-- this can be done locally as well -->
+    <p>
+        <a href="../index.html#homepage-anchor">My index.html Page's Anchor</a>
+    </p>
+    <!-- if it's on the same page, you don't need to include the page path -->
+    <p>
+        <a href="#my-same-page-anchor">My Same-Page Anchor</a>
+    </p>
+
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum tenetur non in quam veritatis possimus nulla saepe impedit adipisci, libero consequatur ratione voluptatum illum! Eveniet accusantium dolorem soluta neque dignissimos.</p>
+
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum tenetur non in quam veritatis possimus nulla saepe impedit adipisci, libero consequatur ratione voluptatum illum! Eveniet accusantium dolorem soluta neque dignissimos.</p>
+
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum tenetur non in quam veritatis possimus nulla saepe impedit adipisci, libero consequatur ratione voluptatum illum! Eveniet accusantium dolorem soluta neque dignissimos.</p>
+
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum tenetur non in quam veritatis possimus nulla saepe impedit adipisci, libero consequatur ratione voluptatum illum! Eveniet accusantium dolorem soluta neque dignissimos.</p>
+
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum tenetur non in quam veritatis possimus nulla saepe impedit adipisci, libero consequatur ratione voluptatum illum! Eveniet accusantium dolorem soluta neque dignissimos.</p>
+
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum tenetur non in quam veritatis possimus nulla saepe impedit adipisci, libero consequatur ratione voluptatum illum! Eveniet accusantium dolorem soluta neque dignissimos.</p>
+
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum tenetur non in quam veritatis possimus nulla saepe impedit adipisci, libero consequatur ratione voluptatum illum! Eveniet accusantium dolorem soluta neque dignissimos.</p>
+
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum tenetur non in quam veritatis possimus nulla saepe impedit adipisci, libero consequatur ratione voluptatum illum! Eveniet accusantium dolorem soluta neque dignissimos.</p>
+
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum tenetur non in quam veritatis possimus nulla saepe impedit adipisci, libero consequatur ratione voluptatum illum! Eveniet accusantium dolorem soluta neque dignissimos.</p>
+
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum tenetur non in quam veritatis possimus nulla saepe impedit adipisci, libero consequatur ratione voluptatum illum! Eveniet accusantium dolorem soluta neque dignissimos.</p>
+
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum tenetur non in quam veritatis possimus nulla saepe impedit adipisci, libero consequatur ratione voluptatum illum! Eveniet accusantium dolorem soluta neque dignissimos.</p>
+
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum tenetur non in quam veritatis possimus nulla saepe impedit adipisci, libero consequatur ratione voluptatum illum! Eveniet accusantium dolorem soluta neque dignissimos.</p>
+
+    <!-- ids can be reused from one page to the next but should be unique per page -->
+    <h2 id="my-same-page-anchor">MY SAME-PAGE ANCHOR</h2>
+
+</body>
+</html>
