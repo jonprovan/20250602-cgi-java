@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML For CSS</title>
+
+    <!--
+        CSS Styling consists of selectors and rules
+        A selector is how we decide what we want to style
+        The rule is what styling we want
+        - rules are broken into key-value pairs for various properties
+
+        There are three places we can put our styles:
+        - inline = include the style in the tag itself (will style ONLY that tag)
+        - in a style tag in the head (will style ONLY things on THIS page)
+        - external stylesheet (will style ALL pages that link to it)
+    -->
+
+    <!-- this style tag in the head will ONLY apply to elements on THIS page -->
+    <style>
+
+        /* this is a CSS comment, looking much more like Java/JS */
+        /* what you see below is a CSS rule
+           it includes a selector -- in this case, we're selecting the body tag directly
+           then, everything in the curly braces is a CSS rule
+           the rule consists of key-value pairs for properties */
+        /* body {
+            margin: 0;
+            font-family: Roboto;
+        }
+
+        h1 {
+            text-align: center;
+        } */
+
+    </style>
+
+    <!-- this link tag connects this page to our external stylesheet -->
+    <link rel="stylesheet" href="css/external-stylesheet.css">
+
+</head>
+<body>
+
+    <header>
+        MY CSS TEA PAGE
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- using inline styles for our h1 tag -->
+        <!-- give it a property -- style="<css prop name>: <value>;" -->
+        <!-- we don't need a selector, because we're already inside the tag we want to style with these properties -->
+        <h1 style="color: rgb(0, 149, 114); font-size: 36px;">HTML FOR CSS</h1>
+        <h2>This page demonstrates CSS principles</h2>
+
+        <p><a href="#">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</a> Enim error, magni possimus vero ab porro laborum sint perferendis voluptate blanditiis facilis quaerat quisquam consectetur laudantium molestias suscipit animi, iure quis.</p>
+
+        <aside class="sidebar">
+            <h2>Did You Know?</h2>
+            <p>Tea is one of the most popular beverages in the world.</p>
+        </aside>
+
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil iure optio nemo, veritatis beatae est, doloremque molestiae minima vel iste accusantium labore quia eaque sunt soluta ducimus consectetur animi cumque.</p>
+
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptate maxime ipsa ex totam minus nemo quia voluptates iure? Similique suscipit reprehenderit ratione labore corporis quaerat, facilis quae officiis dicta aperiam?</p>
+
+        <section>
+            <img src="images/longjing-tea.jpg" alt="Tea" class="medium-image">
+            <!-- applying our class to this h2 tag -->
+            <h2 class="green-and-italics">Some Sweet, Sweet Tea</h2>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magnam dolorem natus voluptatibus possimus amet ad exercitationem ducimus recusandae dolore voluptatem nemo, esse molestias labore fugiat facere inventore, est vitae rem!</p>
+            <!-- you can apply multiple classes by simply separating them with a space -->
+            <p class="green-and-italics extra-line-height">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam eius obcaecati autem possimus illo eos at ipsum delectus nesciunt reiciendis omnis animi qui labore, dolorum dolore recusandae quasi et laboriosam?</p>
+
+            <aside class="sidebar">
+                <h2>Also...</h2>
+                <p>Tiffiny loves tea.</p>
+            </aside>
+
+            <!-- this doesn't work here, but in React, we'll reuse components and their associated styles in this way -->
+            <!-- <Sidebar title="Also..." text="Tiffiny loves tea." /> -->
+
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sunt, omnis magni illum blanditiis praesentium officia, ipsam mollitia laboriosam autem maxime repellendus voluptate. Eos inventore aliquam doloremque vel cupiditate aut perferendis?</p>
+        </section>
+
+        <div class="css-box-model">
+            Some random content for showing off the CSS Box Model, etc.
+        </div>
+
+        <div class="css-box-model">
+            Some more random content for showing off the CSS Box Model, etc.
+        </div>
+
+        <div class="css-box-model">
+            Some more random content for showing off the CSS Box Model, etc.
+        </div>
+
+        <div class="css-box-model">
+            Some more random content for showing off the CSS Box Model, etc.
+        </div>
+
+    </main>
+
+    <footer id="page-footer">
+        <p>&copy; 2025 Tea, Inc. All rights reserved.</p>
+    </footer>
+ 
+</body>
+</html>

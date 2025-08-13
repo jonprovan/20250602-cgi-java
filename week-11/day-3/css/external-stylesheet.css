@@ -1,0 +1,197 @@
+/* this is an external stylesheet
+   this is the preferred way to do CSS for websites
+   it's easily maintainable and you can reuse the styles here on as many pages as you want, just by linking them
+   React will include an external stylesheet automatically called App.css */
+
+/*
+    you can select elements by their tag name, class, or id
+
+    tag name = apply to ALL elements with that tag name
+    - selector syntax is <tag name>
+
+    class = apply to ALL elements we give that class
+    - you can apply more than one class to a single element
+    - you can apply the same class to multiple elements
+    - selector syntax is .<class name>
+    - this is how most external frameworks like Bootstrap do styling
+
+    id = apply to the ONE element on the page that has that id
+    - selector syntax is #<id name>
+*/
+
+/*
+    if two styles in the same stylesheet are applied to a single element, and they have conflicting styles for a certain property, the one that comes last in the stylesheet will take precedence
+
+    order of precedence for the location of styles:
+    inline > head style tag > external stylesheet
+*/
+
+body {
+    margin: 0;
+    font-family: Roboto;
+}
+
+h1 {
+    text-align: center;
+    margin: 0;
+}
+
+header {
+    text-align: center;
+    font-size: 30px;
+    background-color: lightgray;
+    padding-top: 0.25em;
+    font-weight: bold;
+}
+
+nav {
+    font-size: 14px;
+    margin-top: 0.25em;
+    background-color: rgb(16, 139, 92);
+}
+
+/* this selector chooses all a tags with a nav tag
+   NOT any other a tags */
+nav a {
+    text-decoration: none;
+    display: inline-block;
+    padding: 0.25em 1em;
+    color: white;
+    transition: 0.5s;
+}
+
+/* this uses a pseudo-selector to change the look of our links when the user hovers over them */
+nav a:hover {
+    background-color: rgb(93, 93, 93);
+    color: wheat;
+    transition: 0.5s;
+}
+
+main {
+    padding: 1em;
+}
+
+p a {
+    font-weight: bold;
+    color: green;
+}
+
+p a:hover {
+    color: rgb(97, 156, 97);
+    font-style: italic;
+}
+
+/* this is a class-based style that can be applied to whatever we want, regardless of the tag type */
+.green-and-italics {
+    color: green;
+    font-style: italic;
+}
+
+
+.extra-line-height {
+    line-height: 1.5;
+}
+
+.sidebar {
+    width: 150px;
+    float: right;
+    background-color: rgb(187, 216, 216);
+    padding: 0.5em 1em;
+    border-radius: 6px;
+    margin: 0 0 1em 1em;
+}
+
+.sidebar h2 {
+    margin: 0 0 0.5em 0;
+    font-size: 16px;
+}
+
+.sidebar p {
+    font-size: 12px;
+    margin: 0;
+}
+
+.medium-image {
+    width: 150px;
+    float: right;
+    margin: 0 0 1em 1em;
+}
+
+/* this selector is via id */
+#page-footer {
+    background-color: darkslategray;
+    color: white;
+    text-align: center;
+    padding: 0.75em 1em;
+    font-size: 12px;
+    font-style: italic;
+    margin-top: 48px;
+}
+
+.css-box-model {
+    display: inline-block;
+    background-color: beige;
+
+    width: 200px;
+    height: 100px;
+    padding: 10px;
+    border: solid 5px black;
+    margin: 5px;
+}
+
+/* 
+    sizing of things can be absolute or relative
+    absolute = fixed size (px, cm, etc.)
+    relative = percentage of parent element (%, em, rem, vh, vw, etc.)
+    - % = relative to the parent element's width or height
+    - em = relative to the font size of the element
+    - rem = relative to the font size of the root element
+    - vh = relative to 1% of the viewport's height
+    - vw = relative to 1% of the viewport's width
+
+    absolute is great for font sizes, boxes that have to have certain dimensions, and in some cases, margin
+
+    relative is good for responsive design, i.e., as the user resizes their browser window, the elements shrink/enlarge
+
+    relative is also preferred for padding around text, because different devices render fonts at different sizes
+
+    explore flexbox and grid for additional options
+ */
+
+ /* for different device sizes where you want to display styles in a completely different way, i.e., for mobile, etc., you'll use a media screen
+
+ this defines a set of styles that will take effect when the device's window is below a certain threshold 
+ 
+ you can have multiple screens for different thresholds; tablet, phone, etc. */
+
+@media screen and (max-width: 1200px) {
+
+    h2 {
+        color: rgb(217, 151, 127);
+    }
+
+} 
+
+@media screen and (max-width: 600px) {
+
+    body {
+        background-color: blanchedalmond;
+    }
+
+    .sidebar {
+        float: none;
+        margin: 0 0 1em 0;
+        width: 80vw;
+    }
+
+    .css-box-model {
+        display: block;
+        width: 400px;
+        margin-bottom: 15px;
+    }
+
+    .medium-image {
+        width: 100px;
+    }
+
+}  
