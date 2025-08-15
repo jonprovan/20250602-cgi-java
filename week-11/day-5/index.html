@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReqRes Sample Page</title>
+
+    <style>
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            text-align: center;
+        }
+
+        div {
+            margin: 6px 0;
+        }
+    </style>
+
+    <script type="text/javascript">
+        function printSomething() {
+            console.log("Something");
+        }
+
+        async function getDrinks() {
+
+            const response = await fetch("https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita");
+            const json = await response.json();
+            const drinks = json.drinks;
+            console.log(json);
+
+            for (let i = 0; i < drinks.length; i++) {
+                document.getElementById(`${i}`).innerHTML =
+                    `Drink Id: ${drinks[i].idDrink}<br>
+                     Drink Name: ${drinks[i].strDrink}`
+            }
+        }
+
+    </script>
+
+</head>
+<body>
+
+    <h1>GETTING SOME DATA AND PROCESSING IT ON A WEBPAGE</h1>
+
+    <button onclick="printSomething()">Print Something</button>
+    <button onclick="getDrinks()">Get Drinks</button>
+
+    <div id="0"></div>
+    <div id="1"></div>
+    <div id="2"></div>
+    <div id="3"></div>
+    <div id="4"></div>
+    <div id="5"></div>
+    
+</body>
+</html>
