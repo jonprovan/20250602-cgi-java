@@ -1,5 +1,7 @@
 package com.skillstorm.music.controllers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,6 +27,8 @@ import com.skillstorm.music.services.LabelService;
 @RequestMapping("/labels")
 public class LabelController {
 	
+	private final Logger logger = LoggerFactory.getLogger(getClass());
+	
 	// injecting our service here like we did with our repo in our service class
 //	@Autowired
 	private final LabelService service;
@@ -37,6 +41,7 @@ public class LabelController {
 	// this annotation specifies that this method will handle GET requests to /labels with no additional suffix
 	@GetMapping
 	public ResponseEntity<Iterable<Label>> findAll() {
+		this.logger.info("All Labels Retrieved!");
 		return this.service.findAll();
 	}
 	
