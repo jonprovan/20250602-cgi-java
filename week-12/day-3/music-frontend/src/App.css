@@ -35,10 +35,50 @@ main {
     padding: 24px;
 }
 
+table {
+    border-collapse: collapse;
+    text-align: left;
+    margin-top: 12px;
+}
+
+th, td {
+    padding: 0.25em 0.5em;
+}
+
+th {
+    background-color: darkgray;
+}
+
+td {
+    background-color: lightgray;
+}
+
 footer {
     background-color: darkolivegreen;
     text-align: center;
     font-size: 16px;
     color: white;
     padding: 1em;
+}
+
+.album {
+    background-color: darkkhaki;
+    padding: 1em;
+    border-radius: 10px;
+    width: 200px;
+    height: 250px;
+    display: inline-block;
+    margin: 0 0.5em 0.5em 0;
+    vertical-align: top;
+    /* to deal with content that's too big for the box it's in */
+    /* you can hide it, let it scroll, let it overflow, etc. */
+    /* overflow: hidden; */
+}
+
+.album h3, .album h4, .album p, .album ul {
+    margin: 0;
+}
+
+.album ul {
+    padding-left: 1.5em;
 }

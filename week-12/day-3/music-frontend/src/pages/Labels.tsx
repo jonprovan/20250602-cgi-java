@@ -27,6 +27,34 @@ export const Labels = () => {
         getAllLabels().then(response => setLabels(response.data));
     }
 
+    // a multi-use function to sort the labels in different ways
+    // note the typed parameter here, something we couldn't do in plain JS
+    function sortLabels(type: string) {
+        if (type === 'id') {
+            // deconstructing our state to sort it
+            const idSortedLabels = [ ...labels ];
+            // using a custom sort to sort by id, in this case
+            // syntax is similiar to a custom comparator in Java
+            // when we're looking at an element, if we want it to move "to the left"
+            // we need to return a negative value
+            idSortedLabels.sort((labelOne, labelTwo) => labelOne.id - labelTwo.id);
+            setLabels(idSortedLabels);
+        }
+
+        if (type === 'name') {
+            // shorthand version
+            // .localeCompare is the JS equivalent to Java's compareTo for strings
+            setLabels([ ...labels ].sort((labelOne, labelTwo) => 
+                labelOne.labelName.localeCompare(labelTwo.labelName)));
+        }
+
+        if (type === 'history') {
+            setLabels([ ...labels ].sort((labelOne, labelTwo) => 
+                labelOne.labelHistory.history.localeCompare(labelTwo.labelHistory.history)));
+        }
+            
+    }
+
     return (
         <main>
             <h1>LABELS</h1>
@@ -37,6 +65,9 @@ export const Labels = () => {
                 BUT, you don't have the option to insert parameters
                 So use the lambda!! */}
             <button onClick={() => addLabelsToTable()}>Get All Labels</button>
+            <button onClick={() => sortLabels('id')}>Sort By ID</button>
+            <button onClick={() => sortLabels('name')}>Sort By Name</button>
+            <button onClick={() => sortLabels('history')}>Sort By History</button>
 
             <table>
                 <thead>
