@@ -1,6 +1,13 @@
+import { useContext } from "react"
 import { Link } from "react-router"
+import { FavoriteContext } from "../context/FavoriteContext"
 
 export const Nav = () => {
+
+    // in this component, we're merely taking in a value from the context's state
+    // useContext(<context name>) pulls in the context
+    // we desconstruct the array to pull out what we want
+    const [ favorite ] = useContext(FavoriteContext);
 
     return (
         <nav>
@@ -18,6 +25,9 @@ export const Nav = () => {
             <Link to={'/artists'}>Artists</Link>
             <Link to={'/albums'}>Albums</Link>
             <Link to={'/songs'}>Songs</Link>
+            {/* we now have direct access to the context's state,
+                whenever it changes, it'll be reflected here */}
+            {favorite && <span>Fave = {favorite}</span>}
         </nav>
     )
 

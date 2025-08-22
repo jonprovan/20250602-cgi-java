@@ -2,7 +2,9 @@
 // properties ALWAYS come in as an object, 
 // so each property you pass in will be a property of that object
 
+import { useContext } from "react"
 import type { AlbumType } from "../types/types"
+import { FavoriteContext } from "../context/FavoriteContext"
 
 // you must type properties coming in like this
 // this says that the albumProp property MUST be an AlbumType and have all its fields, etc.
@@ -14,6 +16,9 @@ export const Album = ({ albumProp, moveToTopFunction }:
                         // when typing the albumProp, we use our custom type
                         // when typing the function, we lay out its structure
                       { albumProp: AlbumType, moveToTopFunction: (id: number) => void }) => {
+
+    // we don't need the first element in the array (favorite), so we skip it!
+    const [ , setFavorite ] = useContext(FavoriteContext);
 
     return (
         <section className="album">
@@ -41,6 +46,7 @@ export const Album = ({ albumProp, moveToTopFunction }:
             {/* when clicking this button, it sends this album's id to the 
                 moveToTopFunction function */}
             <button onClick={() => moveToTopFunction(albumProp.id)}>Move To Top</button>
+            <button onClick={() => setFavorite(albumProp.albumName)}>♥</button>
 
         </section>
     )

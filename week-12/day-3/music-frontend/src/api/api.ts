@@ -13,6 +13,17 @@ export const getAllLabels = async () => {
 
 }
 
+// this function takes in our form data and submits it as a post request to the backend
+// for post requests in axios, the second parameter after the URL is the body
+export const createLabel = async (label: { labelName: string }) => {
+    return await axios.post(`${baseUrl}labels`, label);
+}
+
+// for functions requiring inputs, you have to take them in from the component
+export const deleteLabelById = async (id: number) => {
+    return await axios.delete(`${baseUrl}labels/${id}`);
+}
+
 export const getAllAlbums = async () => {
     return await axios.get(`${baseUrl}albums`);
 } 
