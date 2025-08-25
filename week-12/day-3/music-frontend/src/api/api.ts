@@ -26,4 +26,18 @@ export const deleteLabelById = async (id: number) => {
 
 export const getAllAlbums = async () => {
     return await axios.get(`${baseUrl}albums`);
-} 
+}
+
+export const getAlbumById = async (id: number) => {
+    return await axios.get(`${baseUrl}albums/${id}`);
+}
+
+// since the id won't be in the form data, we need to take it in separately
+export const updateAlbum = async (id: number, albumDTO: object) => {
+    return await axios.put(`${baseUrl}albums/${id}`, albumDTO);
+}
+
+// getting all the artists for our album update page, but use this wherever!
+export const getAllArtists = async () => {
+    return await axios.get(`${baseUrl}artists`);
+}

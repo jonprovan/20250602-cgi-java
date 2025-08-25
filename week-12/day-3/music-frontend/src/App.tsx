@@ -9,6 +9,7 @@ import { Albums } from './pages/Albums';
 import { Songs } from './pages/Songs';
 import { Frame } from './pages/Frame';
 import { Home } from './pages/Home';
+import { UpdateAlbum } from './pages/UpdateAlbum';
 
 // this component is the root of the entire application
 // EVERYTHING we want displayed on ANY page needs to be contained here, direclty or otherwise
@@ -36,6 +37,15 @@ function App() {
             <Route path='labels' element={<Labels />} />
             <Route path='artists' element={<Artists />} />
             <Route path='albums' element={<Albums />} />
+            {/*
+              this route uses a dynamic path variable, called a param in React
+              if you put a colon before some text,
+              it becomes a variable you can fill with whatever value
+              but you can also use that variable in the linked component
+              you can have as many params as you want in a given route
+              they just have to be named uniquely 
+            */}
+            <Route path='albums/update/:albumId' element={<UpdateAlbum />} />
             <Route path='songs' element={<Songs />} />
           </Route>
         </Routes>
