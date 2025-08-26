@@ -25,10 +25,42 @@ export const Album = ({ albumProp, moveToTopFunction }:
     // you can point to other pages from buttons, within functions etc
     const navigate = useNavigate();
 
-    return (
-        <section className="album">
+    // assembling the style block ahead of time
+    // const styles = {
+    //     background: `linear-gradient(rgba(189, 183, 107, 0.8), 
+    //                                  rgba(189, 183, 107, 0.8)), 
+    //                  url(${albumProp.albumName})`
+    // }
 
-            <h3>{albumProp.id}: {albumProp.albumName}</h3>
+    return (
+        // <section className="album">
+
+        /*
+            React is a little weird with inline styling
+            Because it's thinking of everything dynamic as JS, not HTML/CSS
+            it expects a regular JS object for its style attribute
+            you can assemble it here, like this,
+            but each property has to be structured as a JS object property
+            so you can't use the regular CSS syntax, like:
+            background-image: url("albumProp.albumName")
+        */
+        <section className="album" style={{
+
+            background: `linear-gradient(rgba(189, 183, 107, 0.8), 
+                                         rgba(189, 183, 107, 0.8)), 
+                         url(${albumProp.albumName})`
+        }}>
+            
+        
+        {/* you can also pre-assemble the styles as an object, then include it */}
+        {/* <section className="album" style={styles}> */}
+
+            {/* conditionally displaying an image if one is present in the name */}
+            {albumProp.albumName.startsWith('http') ?
+                <img src={albumProp.albumName} alt={albumProp.albumName} /> : undefined}
+
+            <h3>{albumProp.id}: {albumProp.albumName.startsWith('http') ? 
+                                    'Default' : albumProp.albumName}</h3>
             <h4>{albumProp.releaseYear}</h4>
             <p>Artists:</p>
             <ul>
@@ -54,7 +86,7 @@ export const Album = ({ albumProp, moveToTopFunction }:
             <button onClick={() => setFavorite(albumProp.albumName)}>♥</button>
             {/* using useNavigate here to take us to the update page for this album via dynamic id */}
             <button onClick={() => navigate(`/albums/update/${albumProp.id}`)}>Update</button>
-
+            
         </section>
     )
 

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { getAlbumById, getAllArtists, updateAlbum } from "../api/api";
 import { useForm, type SubmitHandler } from "react-hook-form";
+import { Link } from "react-router";
 
 export const UpdateAlbum = () => {
 
@@ -32,11 +33,18 @@ export const UpdateAlbum = () => {
         }
     ]);
 
+    // setting up some state to use with our error handling
+    const [ error, setError ] = useState<string>('');
+
     // using our API method to retrieve the album based on the URL param
     // the param comes in as a string, so we need to cast it as a number
     function getAlbum() {
         getAlbumById(album.id).then(response => {
             setAlbum(response.data);
+        }).catch(err => {
+            console.log(err);
+            if (err.status === 404)
+                setError(`Album with ID ${album.id} does not exist!`);
         })
     }
 
@@ -90,17 +98,26 @@ export const UpdateAlbum = () => {
         }
 
         // now, we call our put method and head back to the Albums page
-        updateAlbum(album.id, bodyObject).then(() => navigate('/albums'));
+        updateAlbum(album.id, bodyObject)
+            .then(() => navigate('/albums'))
+            .catch(err => {
+                console.log(err);
+                if (err.status === 404)
+                    setError('Album not updated!');
+            });
     }
 
     return (
         <main>
+            <Link to='/albums'>{'<< Back to Albums'}</Link>
             <h1>Update Album</h1>
             <h2>Update the Album from the Albums page here!</h2>
 
             <form onSubmit={handleSubmit(onSubmit)}>
 
-                <h3>Update Album with ID {album.id}</h3>
+                <h3>Update Album with ID {album.id}
+                    {error && <span>{error}</span>}
+                </h3>
 
                 <div>
                     <label>Album Name: </label>

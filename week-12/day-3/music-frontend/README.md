@@ -1,5 +1,15 @@
 # React + TypeScript + Vite
 
+## INITIAL STEPS WHEN DOWNLOADING A REPO FROM A PROJECTMATE
+- clone or pull the repo as usual
+- in a terminal, navigate to the root directory of the project
+- for this project, that's week-12/day-3/music-frontend, etc.
+- run "npm i" or "npm install"
+- this will install the node_modules for the app and ALL its dependencies
+- these dependencies are tracked in package.json
+- but the node_modules folder is gitignored, so they ARE NOT included in the repo!
+- npm i fixes all that immediately! 
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:

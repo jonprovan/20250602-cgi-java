@@ -52,7 +52,7 @@ CREATE TABLE `music`.`artist` (
 
 CREATE TABLE `music`.`album` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `album_name` VARCHAR(100) NOT NULL,
+  `album_name` VARCHAR(200) NOT NULL,
   `release_year` YEAR NOT NULL,
   PRIMARY KEY (`id`));
 
@@ -665,3 +665,9 @@ INSERT INTO music.executive (experience, first_name) VALUES (1, 'Verge');
 INSERT INTO music.executive (experience, first_name) VALUES (5, 'Frederic');
 INSERT INTO music.executive (experience, first_name) VALUES (2, 'Gerek');
 INSERT INTO music.executive (experience, first_name) VALUES (2, 'Clementina');
+
+UPDATE album SET album_name = 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Wood_duck_drake_vocalizing_in_Central_Park_%2886815%29.jpg/640px-Wood_duck_drake_vocalizing_in_Central_Park_%2886815%29.jpg' WHERE id = 1;
+UPDATE album SET album_name = 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Felis_catus-cat_on_snow.jpg/640px-Felis_catus-cat_on_snow.jpg' WHERE id = 2;
+UPDATE album SET album_name = 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Red_Tea.jpg/640px-Red_Tea.jpg' WHERE id = 3;
+UPDATE album SET album_name = 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Red_Panda_%2825193861686%29.jpg/640px-Red_Panda_%2825193861686%29.jpg' WHERE id = 4;
+UPDATE album SET album_name = 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Bufo_bufo_03-clean.jpg/640px-Bufo_bufo_03-clean.jpg' WHERE id = 5;
