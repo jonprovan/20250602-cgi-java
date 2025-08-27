@@ -31,35 +31,35 @@ public class MusicApiApplication {
 	}
 	
 		// quick security customization via a configuration Bean
-		@Bean
-		SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+		// @Bean
+		// SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 			
-			// starting off the process by disabling basic authentication
-			http.httpBasic().disable();
+		// 	// starting off the process by disabling basic authentication
+		// 	http.httpBasic().disable();
 			
-			// disabling Cross-Site Resource Forgery protection for now
-			http.csrf().disable();
+		// 	// disabling Cross-Site Resource Forgery protection for now
+		// 	http.csrf().disable();
 			
-			// bypassing Cross-Origin Resource Sharing protection for now
-			http.cors(httpSecurityCorsConfigurer -> httpSecurityCorsConfigurer.configurationSource(request -> {
-		           CorsConfiguration cc = new CorsConfiguration().applyPermitDefaultValues();
-		           cc.setAllowedMethods(new LinkedList<>(Arrays.asList("GET", "POST", "PUT", "DELETE")));
-		           return cc;
-				})
-		    );
+		// 	// bypassing Cross-Origin Resource Sharing protection for now
+		// 	http.cors(httpSecurityCorsConfigurer -> httpSecurityCorsConfigurer.configurationSource(request -> {
+		//            CorsConfiguration cc = new CorsConfiguration().applyPermitDefaultValues();
+		//            cc.setAllowedMethods(new LinkedList<>(Arrays.asList("GET", "POST", "PUT", "DELETE")));
+		//            return cc;
+		// 		})
+		//     );
 			
-			http.authorizeHttpRequests(requests -> {
+		// 	http.authorizeHttpRequests(requests -> {
 				
-				// saying whether or not requests of certain methods/endpoints are allowed or denied
-				// once a request matches one of these, top-down, the rest are ignored!
-				requests.requestMatchers(HttpMethod.GET, "/**").permitAll();
-				requests.anyRequest().permitAll();
+		// 		// saying whether or not requests of certain methods/endpoints are allowed or denied
+		// 		// once a request matches one of these, top-down, the rest are ignored!
+		// 		requests.requestMatchers(HttpMethod.GET, "/**").permitAll();
+		// 		requests.anyRequest().permitAll();
 				
-			});
+		// 	});
 			
-			return http.build();
+		// 	return http.build();
 			
-		}
+		// }
 
 }
 
