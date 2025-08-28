@@ -11,8 +11,10 @@ import java.security.Principal;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
@@ -48,7 +50,19 @@ public class UserController {
     public ResponseEntity<Void> register(@RequestBody AppUser user) {
         try {
             userService.register(user);
-            return new ResponseEntity<>(HttpStatus.CREATED);
+            return new ResponseEntity<>(HttpStatus.CREATED);        // 201
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().header("message", e.getMessage()).build();
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().header("message", e.getMessage()).build();
+        }
+    }
+
+    @PostMapping("/register/admin")
+    public ResponseEntity<Void> registerAdmin(@RequestBody AppUser user) {
+        try {
+            userService.registerAdmin(user);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);     // 204
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().header("message", e.getMessage()).build();
         } catch (Exception e) {

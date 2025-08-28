@@ -91,10 +91,11 @@ public class AppUser implements UserDetails {
          * 
          *      - format roles to be like ROLE_*
          *          - ROLE_ADMIN, ROLE_USER, ROLE_MOD, etc.
+         * 
+         *          - if lowercase (user, admin) -> role.toUpperCase() would be needed
          */
         Set<SimpleGrantedAuthority> authorities = new HashSet<>();
-        authorities.add(new SimpleGrantedAuthority(role));          
-
+        authorities.add(new SimpleGrantedAuthority("ROLE_" + role));       
         return authorities;
     }
 

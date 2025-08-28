@@ -2,7 +2,6 @@ package com.skillstorm.music.services;
 
 import java.util.Optional;
 
-import javax.management.RuntimeErrorException;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -42,6 +41,22 @@ public class UserService implements UserDetailsService {
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));   // encoding the user's password
         user.setRole("USER");       // sets the user's role to the default level of access
+
+        userRepository.save(user);
+    }
+
+    // registers a new user as an Admin
+    public void registerAdmin(AppUser user) {
+
+        // first check if username is already in use
+        Optional<AppUser> foundUser = userRepository.findByUsername(user.getUsername());
+        if(foundUser.isPresent()) {
+            // username is already taken
+            throw new RuntimeException("Username is already taken.");
+        }
+
+        user.setPassword(passwordEncoder.encode(user.getPassword()));   // encoding the user's password
+        user.setRole("ADMIN");       // sets the user's role to the default level of access
 
         userRepository.save(user);
     }
