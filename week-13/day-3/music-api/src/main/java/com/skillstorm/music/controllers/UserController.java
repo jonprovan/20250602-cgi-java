@@ -46,6 +46,15 @@ public class UserController {
     }
 
 
+    @GetMapping("/login")
+    public ResponseEntity<String> login(Principal principal, CsrfToken token) {
+        if(token.getToken() != null){
+            return ResponseEntity.ok("User: [" + principal.getName() + "] is signed in.");
+        }
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).header("message", "User: is not signed in.").build();
+    }
+
+
     @PostMapping("/register")
     public ResponseEntity<Void> register(@RequestBody AppUser user) {
         try {

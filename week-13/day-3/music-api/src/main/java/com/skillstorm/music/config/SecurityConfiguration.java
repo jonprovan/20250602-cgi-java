@@ -3,7 +3,9 @@ package com.skillstorm.music.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -21,15 +23,21 @@ public class SecurityConfiguration {
                 request
                     .requestMatchers("/users/hello-world").permitAll()              // allow ALL requests to /users/hello-world, even without authentication
                     .requestMatchers("/users/private").authenticated()              // users MUST be authenticated to access this endpoint
+                    .requestMatchers("/users/login").authenticated()              
                     .requestMatchers("/users/register").permitAll()                 // any new user can register
                     .requestMatchers("/users/register/admin").authenticated()       // only an authenticated user can become an admin
                     .requestMatchers(HttpMethod.GET, "/artists").permitAll()
-                    //.requestMatchers(HttpMethod.POST, "/artists").hasRole("ADMIN")
-                    .requestMatchers(HttpMethod.POST, "/artists").hasAuthority("ROLE_ADMIN")  // does the same as above, but needs the formatted role as spring expects it to be
+                    .requestMatchers(HttpMethod.POST, "/artists").hasRole("ADMIN")
+                    //.requestMatchers(HttpMethod.POST, "/artists").hasAuthority("ROLE_ADMIN")  // does the same as above, but needs the formatted role as spring expects it to be
             )
             
             // tells Spring security to use Basic Authentication instead of formLogin
             .httpBasic(basic -> {})      // sets default configuration 
+
+            // telling spring security to create a session when a request comes in that needs a session (like getting an XSRF-TOKEN)
+            .sessionManagement(session -> 
+                session.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+            )
 
             /**
              * Cross Site Request Forgery (CSRF)
@@ -47,13 +55,13 @@ public class SecurityConfiguration {
              * 
              *      in your frontend code, you NEED to access this token, and then transform it and send it in future requests
              */
-            // .csrf((csrf) -> 
-            //     // tells spring security how to send XSRF-TOKEN. it will automatically handle X-XSRF-TOKEN when you send that.
-            //     csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()).ignoringRequestMatchers("/users/register")
-            // );
             .csrf((csrf) -> 
-                csrf.disable()
+                // tells spring security how to send XSRF-TOKEN. it will automatically handle X-XSRF-TOKEN when you send that.
+                csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()).ignoringRequestMatchers("/users/register")
             );
+            // .csrf((csrf) -> 
+            //     csrf.disable()
+            // );
 
 
         return http.build();

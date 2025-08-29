@@ -1,0 +1,24 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-DemoApplication<spring-oauth2-demo>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.skillstorm.demo.DemoApplication",
+            "projectName": "spring-oauth2-demo",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-SpringOauth2GoogleApplication<spring-oauth2-google>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.skillstorm.spring_oauth2_google.SpringOauth2GoogleApplication",
+            "projectName": "spring-oauth2-google",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
