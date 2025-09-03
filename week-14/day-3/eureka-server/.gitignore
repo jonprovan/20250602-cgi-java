@@ -5,7 +5,7 @@ target/
 !**/src/test/**/target/
 
 ### IGNORING OUR .env FILE TO KEEP SECRET INFO OUT OF THE REPO ###
-!**/src/main/resources/.env
+*.env
 
 ### STS ###
 .apt_generated
