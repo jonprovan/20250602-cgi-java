@@ -9,10 +9,10 @@ spring:
   application:
     name: eureka-server
   config:
-    import: optional:file:.env[.properties]
+    import: optional:file:src/main/resources/.env[.properties]
 
 # (see above) importing our external .env file with values we may want to hide from the public
-# this particular syntax for the file location is if the .env file is in the same folder as THIS file
+# the "root" directory of the path is the root project directory, so we're navigating here to the file's location (same directory as this file)
 
 
 # Eureka configuration
