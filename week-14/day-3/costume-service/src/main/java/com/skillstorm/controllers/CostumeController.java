@@ -7,6 +7,8 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -60,5 +62,26 @@ public class CostumeController {
 		
 		return ResponseEntity.ok(accessories);
 	}
+	
+	// this endpoint can be reached normally, but also it's one we're calling to from our other service
+	@GetMapping("/trick-or-treater/{id}")
+	public ResponseEntity<Costume> findCostumeByTrickOrTreaterId(@PathVariable int id) {
+		for (Costume costume : costumes) {
+			if (costume.trickOrTreaterId == id)
+				return ResponseEntity.ok(costume);
+		}
+		
+		return ResponseEntity.notFound().build();
+	}
+	
+	// an endpoint to create a new costume and add it to the list
+	@PostMapping
+	public ResponseEntity<Costume> createCostume(@RequestBody Costume costume) {
+		costumes.add(costume);
+		if (costumes.contains(costume))
+			return ResponseEntity.status(201).body(costume);
+		return ResponseEntity.badRequest().build();
+	}
+	
 
 }

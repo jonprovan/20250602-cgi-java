@@ -7,14 +7,28 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skillstorm.clients.CostumeServiceClient;
+import com.skillstorm.models.Costume;
 import com.skillstorm.models.TrickOrTreater;
+
+import feign.FeignException;
 
 @RestController
 @RequestMapping("/trick-or-treater")
 public class TrickOrTreaterController {
+	
+	// we inject our client just like injecting a service or a repo
+	// constructor injection is preferred over setter or field injection
+	private CostumeServiceClient costumeServiceClient;
+	
+	public TrickOrTreaterController(CostumeServiceClient costumeServiceClient) {
+		this.costumeServiceClient = costumeServiceClient;
+	}
 	
 	/*
 	 * NOTE -- we're doing EVERYTHING in the Controller here ONLY for expediency!
@@ -44,6 +58,38 @@ public class TrickOrTreaterController {
 		}
 		
 		return ResponseEntity.notFound().build();
+	}
+	
+	/*  this endpoint should return the costume for a requested trick-or-treater
+	 *  since the costume information is on the other service,
+	 *  we need to reach out to that service to get information
+	 *  this COULD be done via RestTemplate, since in our case, we actually DO know the address of the other service
+	 *  but, since we WILL NOT know the address of the other service in the real world
+	 *  we will use a FeignClient to call the service by name rather than address
+	 */
+	
+	@GetMapping("/{id}/costume")
+	public ResponseEntity<Costume> findCostumeByTrickOrTreaterId(@PathVariable int id) {
+		
+		// regardless of whether you properly handle endpoints on the other end
+		// if the FeignClient receives an Exception, you have to handle it on the calling end
+		try {
+			return this.costumeServiceClient.findCostumeByTrickOrTreaterId(id);
+		} catch (FeignException e) {
+			e.printStackTrace();
+			return ResponseEntity.notFound().build();
+		}
+	}
+	
+	@PostMapping("/costume/create")
+	public ResponseEntity<Costume> createCostume(@RequestBody Costume costume) {
+		
+		try {
+			return this.costumeServiceClient.createCostume(costume);
+		} catch (FeignException e) {
+			e.printStackTrace();
+			return ResponseEntity.badRequest().build();
+		}
 	}
 
 }
