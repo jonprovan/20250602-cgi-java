@@ -19,8 +19,7 @@ spring:
           - id: costume-service-route
             uri: lb://costume-service
             predicates:
-            - Path=/costume/**
-            - Path=/accessory/**
+            - Path=/costume/**, /accessory/**
           - id: trick-or-treater-service-route
             uri: lb://trick-or-treater-service
             predicates:
