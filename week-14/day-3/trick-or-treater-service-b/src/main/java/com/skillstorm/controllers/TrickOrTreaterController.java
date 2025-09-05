@@ -97,13 +97,7 @@ public class TrickOrTreaterController {
 	// just doing it here for illustrative purposes
 	@GetMapping("/load-balancer-test")
 	public ResponseEntity<TrickOrTreater> loadBalancerTest() {
-		return ResponseEntity.ok(new TrickOrTreater(1, "Instance A"));
+		return ResponseEntity.ok(new TrickOrTreater(2, "Instance B"));
 	}
 	
-	
-	
-	
-	
-	
-
 }

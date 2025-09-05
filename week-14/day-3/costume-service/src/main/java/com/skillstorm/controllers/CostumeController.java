@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skillstorm.clients.InternalServiceClient;
 import com.skillstorm.models.Accessory;
 import com.skillstorm.models.Costume;
 
@@ -19,6 +20,13 @@ import com.skillstorm.models.Costume;
 @RequestMapping("/costume")
 public class CostumeController {
 	
+	private InternalServiceClient internalServiceClient;
+	
+	public CostumeController(InternalServiceClient internalServiceClient) {
+		super();
+		this.internalServiceClient = internalServiceClient;
+	}
+
 	/*
 	 * NOTE -- we're doing EVERYTHING in the Controller here ONLY for expediency!
 	 * You should still use the standard entity/repo/service/controller structure for real projects!
@@ -81,6 +89,12 @@ public class CostumeController {
 		if (costumes.contains(costume))
 			return ResponseEntity.status(201).body(costume);
 		return ResponseEntity.badRequest().build();
+	}
+	
+	// this method gets the hello message from the internal service
+	@GetMapping("/internal")
+	public ResponseEntity<String> getHello() {
+		return this.internalServiceClient.getHello();
 	}
 	
 
