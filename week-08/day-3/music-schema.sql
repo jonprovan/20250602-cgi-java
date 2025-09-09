@@ -88,6 +88,16 @@ CREATE TABLE `music`.`executive` (
   `experience` INT NOT NULL,
   `first_name` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`experience`, `first_name`));
+  
+CREATE TABLE `music`.`users` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(32) NOT NULL,
+  `user_password` VARCHAR(256) NOT NULL,
+  `user_role` VARCHAR(32) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `username_UNIQUE` (`username` ASC) VISIBLE);
+  
+  select * from users;
     
 INSERT INTO music.label (label_name) VALUES ('Connelly, Kilback and Lockman');
 INSERT INTO music.label (label_name) VALUES ('Kemmer, Nicolas and Connelly');

@@ -38,8 +38,8 @@ public class UserController {
 
         /**
          * created and populated by SecurityContext
-         *  - Prinipal - the user. info on the user. 
-         *  - Authenticaiton - info about auth 
+         *  - Principal - the user. info on the user. 
+         *  - Authentication - info about auth 
          */
 
         return "some private data: " + principal.getName();
